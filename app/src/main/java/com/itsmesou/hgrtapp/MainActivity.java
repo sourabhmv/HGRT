@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public void Button1(View view)
     {
         Toast.makeText(MainActivity.this,"Button 1",Toast.LENGTH_SHORT).show();
+
 
     }
     public void Button2(View view)
@@ -92,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this,"Button 16",Toast.LENGTH_SHORT).show();
 
     }
+
+
 }
