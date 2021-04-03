@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.Collection;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,23 +44,34 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16
         };
 
-        B1.setBackgroundResource(images[r.nextInt(images.length)]);
-        B2.setBackgroundResource(images[r.nextInt(images.length)]);
-        B3.setBackgroundResource(images[r.nextInt(images.length)]);
-        B4.setBackgroundResource(images[r.nextInt(images.length)]);
-        B5.setBackgroundResource(images[r.nextInt(images.length)]);
-        B6.setBackgroundResource(images[r.nextInt(images.length)]);
-        B7.setBackgroundResource(images[r.nextInt(images.length)]);
-        B8.setBackgroundResource(images[r.nextInt(images.length)]);
-        B9.setBackgroundResource(images[r.nextInt(images.length)]);
-        B10.setBackgroundResource(images[r.nextInt(images.length)]);
-        B11.setBackgroundResource(images[r.nextInt(images.length)]);
-        B12.setBackgroundResource(images[r.nextInt(images.length)]);
-        B13.setBackgroundResource(images[r.nextInt(images.length)]);
-        B14.setBackgroundResource(images[r.nextInt(images.length)]);
-        B15.setBackgroundResource(images[r.nextInt(images.length)]);
-        B16.setBackgroundResource(images[r.nextInt(images.length)]);
+        Integer[] current=images;
 
+        //Shuffling array
+        for(int i=0; i<current.length;i++)
+        {
+            int index=(int)(Math.random() * current.length);
+            Integer temp= current[i];
+            current[i]=current[index];
+            current[index]=temp;
+
+        }
+        int i=0;
+        B1.setBackgroundResource(current[i]);
+        B2.setBackgroundResource(current[i+1]);
+        B3.setBackgroundResource(current[i+2]);
+        B4.setBackgroundResource(current[i+3]);
+        B5.setBackgroundResource(current[i+4]);
+        B6.setBackgroundResource(current[i+5]);
+        B7.setBackgroundResource(current[i+6]);
+        B8.setBackgroundResource(current[i+7]);
+        B9.setBackgroundResource(current[i+8]);
+        B10.setBackgroundResource(current[i+9]);
+        B11.setBackgroundResource(current[i+10]);
+        B12.setBackgroundResource(current[i+11]);
+        B13.setBackgroundResource(current[i+12]);
+        B14.setBackgroundResource(current[i+13]);
+        B15.setBackgroundResource(current[i+14]);
+        B16.setBackgroundResource(current[i+15]);
 
 
     }
