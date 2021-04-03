@@ -14,7 +14,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16;
-    Random r;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +37,11 @@ public class MainActivity extends AppCompatActivity {
         B15=(ImageButton)findViewById(R.id.button15);
         B16=(ImageButton)findViewById(R.id.button16);
 
-
-        r=new Random();
+        //arrays
         Integer[] images= {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
                 R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16
         };
-
+        //array which will be assigned to buttons
         Integer[] current=images;
 
         //Shuffling array
