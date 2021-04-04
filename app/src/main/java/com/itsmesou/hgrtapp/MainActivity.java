@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     };
     //array which will be assigned to buttons
     Integer[] current = images;
+    Integer[] inppass ={};
+    Integer counter=0;
+    Integer[] outpass={2131165300,2131165310};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,96 +87,128 @@ public class MainActivity extends AppCompatActivity {
     public void Button1(View view) {
         int id= current[0].intValue();
         Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button2(View view) {
         int id= current[1].intValue();
         Toast.makeText(MainActivity.this, "Button 2" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button3(View view) {
         int id= current[2].intValue();
         Toast.makeText(MainActivity.this, "Button 3" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button4(View view) {
         int id= current[3].intValue();
         Toast.makeText(MainActivity.this, "Button 4" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button5(View view) {
         int id= current[4].intValue();
         Toast.makeText(MainActivity.this, "Button 5" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button6(View view) {
         int id= current[5].intValue();
         Toast.makeText(MainActivity.this, "Button 6" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button7(View view) {
         int id= current[6].intValue();
         Toast.makeText(MainActivity.this, "Button 7" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button8(View view) {
         int id= current[7].intValue();
         Toast.makeText(MainActivity.this, "Button 8" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button9(View view) {
         int id= current[8].intValue();
         Toast.makeText(MainActivity.this, "Button 9" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button10(View view) {
         int id= current[9].intValue();
         Toast.makeText(MainActivity.this, "Button 10" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button11(View view) {
         int id= current[10].intValue();
         Toast.makeText(MainActivity.this, "Button 11" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button12(View view) {
         int id= current[11].intValue();
         Toast.makeText(MainActivity.this, "Button 12" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button13(View view) {
         int id= current[12].intValue();
         Toast.makeText(MainActivity.this, "Button 13" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button14(View view) {
         int id= current[13].intValue();
         Toast.makeText(MainActivity.this, "Button 14" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button15(View view) {
         int id= current[14].intValue();
         Toast.makeText(MainActivity.this, "Button 15" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
     public void Button16(View view) {
         int id= current[15].intValue();
         Toast.makeText(MainActivity.this, "Button 16" + id, Toast.LENGTH_SHORT).show();
+        inppass[counter]=id;
+        counter++;
 
     }
 
