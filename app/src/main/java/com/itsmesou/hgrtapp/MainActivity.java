@@ -243,10 +243,30 @@ public class MainActivity extends AppCompatActivity {
         int l1=inppass.size();
         int l2=outpass.size();
         int l = 0;
-        if(l1<l2)
-            l=l1;
+        //To fix jimitt guhan raju issue
+
+        while (l1<l2) {
+            int i=0;
+            if(inppass.get(i) != (null)){
+                inppass.add("DMPJ");
+            }
+            i++;
+            l1=inppass.size();
+
+          }
+        while (l2<l1) {
+            int i=0;
+            if(outpass.get(i) != (null)){
+                outpass.add("DMPJ");
+            }
+            i++;
+            l2=outpass.size();
+
+        }
+
+
         if(l2<l1)
-            l=l2;
+            l=l1;
         if(l1==l2)
             l=l1;
 
@@ -254,15 +274,20 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i=0;i<l;i++) {
 
-            if ((inppass.get(i)).compareTo( outpass.get(i))==0) {
+            if ((inppass.get(i)).compareTo( outpass.get(i))!=0) {
                 flag=1;
             }
             }
-        if(flag==1){
+        if(flag==0){
             Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
         }
         else{
             Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
+            for(int i=0;i<counter;i++) {
+                inppass.clear();
+
+            }
         }
     }
 }
