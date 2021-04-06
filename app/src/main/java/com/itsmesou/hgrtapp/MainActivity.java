@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Integer counter = 0;
     //String outpass[] ={"2131165300"};
     ArrayList<String> outpass= new ArrayList<String>();
+    ArrayList<String> temop= new ArrayList<String>();
     String AES ="AES";
     String pa= "morazha";
 
@@ -93,18 +94,22 @@ public class MainActivity extends AppCompatActivity {
         B15.setBackgroundResource(current[i + 14]);
         B16.setBackgroundResource(current[i + 15]);
 
-        //outpass.add("L1ZO2yRZ++F8kDRFTu34Vw==");
         //outpass.add("2131165310");
 
         //Each time opening the app the previous array will be flushed.
         inppass.clear();
-        String encout;
+        temop.add("2131165310");
+        temop.add("2131165300");
 
-        try {
-            encout=encrypt("2131165310",pa);
-            outpass.add(encout);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Encrypting content inside output array
+        String encout;
+        for(i=0;i<temop.size();i++) {
+            try {
+                encout = encrypt(temop.get(i), pa);
+                outpass.add(encout);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 
