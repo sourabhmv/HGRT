@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         outpass.add("2131165300");
         outpass.add("2131165310");
+        //Each time opening the app the previous array will be flushed.
+        inppass.clear();
 
 
     }
@@ -244,10 +246,9 @@ public class MainActivity extends AppCompatActivity {
         int l2=outpass.size();
         int l = 0;
         //To fix jimitt guhan raju issue
-
+        int i=0;
         while (l1<l2) {
-            int i=0;
-            if(inppass.get(i) != (null)){
+            if(inppass !=null){
                 inppass.add("DMPJ");
             }
             i++;
@@ -255,8 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
           }
         while (l2<l1) {
-            int i=0;
-            if(outpass.get(i) != (null)){
+            if(outpass != null){
                 outpass.add("DMPJ");
             }
             i++;
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
         Integer flag = 0;
 
-        for(int i=0;i<l;i++) {
+        for( i=0;i<l;i++) {
 
             if ((inppass.get(i)).compareTo( outpass.get(i))!=0) {
                 flag=1;
@@ -284,10 +284,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
-            for(int i=0;i<counter;i++) {
+            for( i=0;i<counter;i++) {
                 inppass.clear();
 
             }
         }
+
     }
 }
