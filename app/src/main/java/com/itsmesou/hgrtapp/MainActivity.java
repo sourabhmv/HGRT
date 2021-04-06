@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +13,16 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     Integer counter = 0;
     //String outpass[] ={"2131165300"};
     ArrayList<String> outpass= new ArrayList<String>();
+    String AES ="AES";
+    String pa= "morazha";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +93,19 @@ public class MainActivity extends AppCompatActivity {
         B15.setBackgroundResource(current[i + 14]);
         B16.setBackgroundResource(current[i + 15]);
 
-        outpass.add("2131165300");
-        outpass.add("2131165310");
+        //outpass.add("L1ZO2yRZ++F8kDRFTu34Vw==");
+        //outpass.add("2131165310");
+
         //Each time opening the app the previous array will be flushed.
         inppass.clear();
+        String encout;
+
+        try {
+            encout=encrypt("2131165310",pa);
+            outpass.add(encout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -96,11 +114,18 @@ public class MainActivity extends AppCompatActivity {
     public void Button1(View view) {
         Integer id=current[0].intValue();
         String strid;
+        String encstr;
         strid=String.valueOf(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 1" + id + counter+"and"+strid+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
-        //adding password in to array
-        counter++;
+        try {
+            encstr=encrypt(strid,pa);
+            //add encrypted id into array
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -108,138 +133,257 @@ public class MainActivity extends AppCompatActivity {
     public void Button2(View view) {
         Integer id = current[1].intValue();
         String strid;
+        String encstr;
         strid=String.valueOf(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 2" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 2" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 
     public void Button3(View view) {
         Integer id = current[2].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 3" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 3" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button4(View view) {
         Integer id = current[3].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 4" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 4" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button5(View view) {
         Integer id = current[4].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 5" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 5" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button6(View view) {
-       Integer id = current[5].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 6" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        Integer id = current[5].intValue();
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 6" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button7(View view) {
         Integer id = current[6].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 7" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 7" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button8(View view) {
         Integer id = current[7].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 8" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 8" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button9(View view) {
         Integer id = current[8].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 9" + id, Toast.LENGTH_SHORT).show();
-        counter++;
-
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 9" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void Button10(View view) {
         Integer id = current[9].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 10" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 10" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button11(View view) {
         Integer id = current[10].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 11" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 11" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button12(View view) {
-        Integer id =current[11].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 12" + id, Toast.LENGTH_SHORT).show();
-        counter++;
-
+        Integer id = current[11].intValue();
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 12" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void Button13(View view) {
         Integer id = current[12].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 13" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 13" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button14(View view) {
         Integer id = current[13].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 14" + id, Toast.LENGTH_SHORT).show();
-        counter++;
-
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 14" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void Button15(View view) {
         Integer id = current[14].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 15" + id, Toast.LENGTH_SHORT).show();
-        counter++;
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 15" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void Button16(View view) {
         Integer id = current[15].intValue();
-        String strid=Integer.toString(id);
-        inppass.add(strid);
-        Toast.makeText(MainActivity.this, "Button 16" + id, Toast.LENGTH_SHORT).show();
-        counter++;
-
+        String strid;
+        String encstr;
+        strid=String.valueOf(id);
+        try {
+            encstr=encrypt(strid,pa);
+            inppass.add(encstr);
+            Toast.makeText(MainActivity.this, "success"+inppass.get(0)+"and"+outpass.get(0), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Button 16" + id, Toast.LENGTH_SHORT).show();
+            counter++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void Check(View view) {
         int l1=inppass.size();
@@ -247,21 +391,25 @@ public class MainActivity extends AppCompatActivity {
         int l = 0;
         //To fix jimitt guhan raju issue
         int i=0;
-        while (l1<l2) {
-            if(inppass !=null){
-                inppass.add("DMPJ");
-            }
-            i++;
-            l1=inppass.size();
+        if(l1<l2) {
+            while (l1 < l2) {
+                if (inppass != null) {
+                    inppass.add("DMPJ");
+                }
+                i++;
+                l1 = inppass.size();
 
-          }
-        while (l2<l1) {
-            if(outpass != null){
-                outpass.add("DMPJ");
             }
-            i++;
-            l2=outpass.size();
+        }
+        if(l2<l1) {
+            while (l2 < l1) {
+                if (outpass != null) {
+                    outpass.add("DMPJ");
+                }
+                i++;
+                l2 = outpass.size();
 
+            }
         }
 
 
@@ -273,22 +421,45 @@ public class MainActivity extends AppCompatActivity {
         Integer flag = 0;
 
         for( i=0;i<l;i++) {
-
-            if ((inppass.get(i)).compareTo( outpass.get(i))!=0) {
+            if (inppass.get(i).compareTo(outpass.get(i))!=0) {
                 flag=1;
             }
             }
         if(flag==0){
             Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+            inppass.removeAll(inppass);
 
         }
         else{
-            Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
-            for( i=0;i<counter;i++) {
-                inppass.clear();
 
-            }
+            Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
+                inppass.removeAll(inppass);
+
+
         }
 
     }
+
+
+    private String encrypt(String Data, String password)throws Exception {
+        SecretKeySpec key =generatekey(password);
+        Cipher c = Cipher.getInstance(AES);
+        c.init(Cipher.ENCRYPT_MODE,key);
+        byte[] encVal = c.doFinal(Data.getBytes());
+        String encryptedValue = Base64.encodeToString(encVal,Base64.DEFAULT);
+        return  encryptedValue;
+
+    }
+
+    private SecretKeySpec generatekey(String password)throws Exception {
+        final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
+        digest.update(bytes,0,bytes.length);
+        byte[] key = digest.digest();
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key,"AES");
+        return secretKeySpec;
+
+
+    }
+
 }
