@@ -2,6 +2,7 @@ package com.itsmesou.hgrtapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -28,17 +29,18 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
-    Integer[] images= {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
-            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m1
+    Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
+            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16
+
+
     };
-    Integer[] friends={R.drawable.fr_1,R.drawable.fr_2,R.drawable.fr_3,R.drawable.fr_4,R.drawable.fr_5,R.drawable.fr_6,R.drawable.fr_7,R.drawable.fr_8,
-            R.drawable.fr_9,R.drawable.fr_10, R.drawable.fr_11,R.drawable.fr_12,R.drawable.fr_13,R.drawable.fr_14,R.drawable.fr_15,R.drawable.fr_16};
 
 
-
+    //array which will be assigned to buttons
+    Integer [] current = images;
     ArrayList<String> inppass = new ArrayList<String>();
     Integer counter = 0;
     //String outpass[] ={"2131165300"};
@@ -46,9 +48,6 @@ public class MainActivity extends AppCompatActivity{
     ArrayList<String> temop= new ArrayList<String>();
     String AES ="AES";
     String pa= "morazha";
-    Integer tmp[]=images;
-    Integer [] current = tmp;
-
 
 
     @Override
@@ -75,8 +74,7 @@ public class MainActivity extends AppCompatActivity{
         B15 = (ImageButton) findViewById(R.id.button15);
         B16 = (ImageButton) findViewById(R.id.button16);
 
-
-
+        //arrays
 
 
         //Shuffling array
@@ -174,7 +172,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 3" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -191,7 +189,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 4" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -208,7 +206,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 5" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -225,7 +223,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 6" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -242,7 +240,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 7" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -259,7 +257,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 8" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -276,7 +274,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 9" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -292,7 +290,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 10" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -309,7 +307,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 11" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -326,7 +324,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 12" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -342,7 +340,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 13" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -359,7 +357,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 14" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -375,7 +373,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 15" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -392,7 +390,7 @@ public class MainActivity extends AppCompatActivity{
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 16" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -442,13 +440,15 @@ public class MainActivity extends AppCompatActivity{
             }
             }
         if(flag==0){
-            Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, succscr.class);
+                startActivity(intent);
+
             inppass.removeAll(inppass);
 
         }
         else{
 
-            Toast.makeText(MainActivity.this, "Try again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
                 inppass.removeAll(inppass);
 
 
@@ -477,8 +477,5 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
-
-
-
 
 }
