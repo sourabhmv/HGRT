@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_gravity="fill"
+    android:layout_height="fill_parent"
+    tools:context=".Homescreen">
+
+
+    <Button
+        android:id="@+id/loginhs"
+        android:layout_width="217dp"
+        android:layout_height="50dp"
+        android:background="@drawable/login_button_startscreen"
+        android:text="click here to login"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <ImageView
+        android:id="@+id/homescreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/homescreen"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="-16dp" />
+
+    <ImageView
+        android:id="@+id/hslogo"
+        android:layout_width="404dp"
+        android:layout_height="307dp"
+        android:layout_marginBottom="572dp"
+        android:alpha="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/homescreen"
+        app:srcCompat="@drawable/startuplogo" />
+
+    <TextView
+        android:id="@+id/wlc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:alpha="0"
+        android:text="Welcome"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/homescreen"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="@+id/homescreen"
+        app:layout_constraintTop_toTopOf="@+id/homescreen"
+        app:layout_constraintVertical_bias="0.465" />
+
+    <TextView
+        android:id="@+id/pwdet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:text="Click the below button to enter your password combination"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/homescreen"
+        app:layout_constraintVertical_bias="0.525" />
+</androidx.constraintlayout.widget.ConstraintLayout>
