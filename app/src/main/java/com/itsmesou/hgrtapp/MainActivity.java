@@ -28,18 +28,17 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
 
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
-    Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
-            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16
-
-
+    Integer[] images= {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
+            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m1
     };
+    Integer[] friends={R.drawable.fr_1,R.drawable.fr_2,R.drawable.fr_3,R.drawable.fr_4,R.drawable.fr_5,R.drawable.fr_6,R.drawable.fr_7,R.drawable.fr_8,
+            R.drawable.fr_9,R.drawable.fr_10, R.drawable.fr_11,R.drawable.fr_12,R.drawable.fr_13,R.drawable.fr_14,R.drawable.fr_15,R.drawable.fr_16};
 
 
-    //array which will be assigned to buttons
-    Integer [] current = images;
+
     ArrayList<String> inppass = new ArrayList<String>();
     Integer counter = 0;
     //String outpass[] ={"2131165300"};
@@ -47,17 +46,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<String> temop= new ArrayList<String>();
     String AES ="AES";
     String pa= "morazha";
+    Integer tmp[]=images;
+    Integer [] current = tmp;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner=findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this,R.array.defaultimages, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        
 
         B1 = (ImageButton) findViewById(R.id.button1);
         B2 = (ImageButton) findViewById(R.id.button2);
@@ -76,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         B15 = (ImageButton) findViewById(R.id.button15);
         B16 = (ImageButton) findViewById(R.id.button16);
 
-        //arrays
+
+
 
 
         //Shuffling array
@@ -478,15 +478,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text=parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
 
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
-    }
 }
