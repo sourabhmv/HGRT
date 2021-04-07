@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             encstr=encrypt(strid,pa);
             //add encrypted id into array
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         try {
             encstr=encrypt(strid,pa);
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 2" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
