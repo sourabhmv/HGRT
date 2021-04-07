@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HGRT app</string>
+    <string-array name="defaultimages">
+        <item>images</item>
+        <item>friends</item>
+        <item>flowers</item>
+    </string-array>
 </resources>
