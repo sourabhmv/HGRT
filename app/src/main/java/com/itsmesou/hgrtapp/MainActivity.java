@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Each time opening the app the previous array will be flushed.
         inppass.clear();
-        temop.add("2131230848");
-        temop.add("2131230838");
+        temop.add("2131230864");
+        temop.add("2131230854");
 
         // Encrypting content inside output array
         String encout;
@@ -399,60 +400,147 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+     int timer =0;
+
     public void Check(View view) {
-        int l1=inppass.size();
-        int l2=outpass.size();
-        int l = 0;
-        //To fix jimitt guhan raju issue
-        int i=0;
-        if(l1<l2) {
-            while (l1 < l2) {
-                if (inppass != null) {
-                    inppass.add("DMPJ");
-                }
-                i++;
-                l1 = inppass.size();
+       if(timer==3) {
+           Toast.makeText(MainActivity.this, "Try after some sec", Toast.LENGTH_SHORT).show();
+           timer=0;
 
-            }
-        }
-        if(l2<l1) {
-            while (l2 < l1) {
-                if (outpass != null) {
-                    outpass.add("DMPJ");
-                }
-                i++;
-                l2 = outpass.size();
+           new Handler().postDelayed(new Runnable() {
+               @Override
+               public void run() {
 
-            }
-        }
+                   int l1 = inppass.size();
+                   int l2 = outpass.size();
+                   int l = 0;
+                   //To fix jimitt guhan raju issue
+                   int i = 0;
+                   if (l1 < l2) {
+                       while (l1 < l2) {
+                           if (inppass != null) {
+                               inppass.add("DMPJ");
+                           }
+                           i++;
+                           l1 = inppass.size();
 
+                       }
+                   }
+                   if (l2 < l1) {
+                       while (l2 < l1) {
+                           if (outpass != null) {
+                               outpass.add("DMPJ");
+                           }
+                           i++;
+                           l2 = outpass.size();
 
-        if(l2<l1)
-            l=l1;
-        if(l1==l2)
-            l=l1;
-
-        Integer flag = 0;
-
-        for( i=0;i<l;i++) {
-            if (inppass.get(i).compareTo(outpass.get(i))!=0) {
-                flag=1;
-            }
-            }
-        if(flag==0){
-            Intent intent = new Intent(this, succscr.class);
-                startActivity(intent);
-
-            inppass.removeAll(inppass);
-
-        }
-        else{
-
-            Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
-                inppass.removeAll(inppass);
+                       }
+                   }
 
 
-        }
+                   if (l2 < l1)
+                       l = l1;
+                   if (l1 == l2)
+                       l = l1;
+
+                   Integer flag = 0;
+
+                   for (i = 0; i < l; i++) {
+                       if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
+                           flag = 1;
+                       }
+                   }
+                   if (flag == 0) {
+                      // Intent intent = new Intent(this, succscr.class);
+                       Intent intent = new Intent(getApplicationContext(),succscr.class);
+                       startActivity(intent);
+                       //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                       timer=0;
+
+                       inppass.removeAll(inppass);
+
+                   } else {
+
+                           Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
+                           inppass.removeAll(inppass);
+                           timer++;
+
+                   }
+
+
+               }
+           }, 10000);
+
+       }
+
+
+       else {
+
+           int l1 = inppass.size();
+           int l2 = outpass.size();
+           int l = 0;
+           //To fix jimitt guhan raju issue
+           int i = 0;
+           if (l1 < l2) {
+               while (l1 < l2) {
+                   if (inppass != null) {
+                       inppass.add("DMPJ");
+                   }
+                   i++;
+                   l1 = inppass.size();
+
+               }
+           }
+           if (l2 < l1) {
+               while (l2 < l1) {
+                   if (outpass != null) {
+                       outpass.add("DMPJ");
+                   }
+                   i++;
+                   l2 = outpass.size();
+
+               }
+           }
+
+
+           if (l2 < l1)
+               l = l1;
+           if (l1 == l2)
+               l = l1;
+
+           Integer flag = 0;
+
+           for (i = 0; i < l; i++) {
+               if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
+                   flag = 1;
+               }
+           }
+           if (flag == 0) {
+               Intent intent = new Intent(this, succscr.class);
+               startActivity(intent);
+               //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+               timer=0;
+
+               inppass.removeAll(inppass);
+
+           } else {
+
+
+                   Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
+                   inppass.removeAll(inppass);
+                   timer++;
+
+
+
+           }
+
+
+
+
+       }
+
+
+
 
     }
 
