@@ -69,21 +69,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
                 if("Images".equals(spinner.getItemAtPosition(i).toString())){
                     setButtonImages(images);
-                    /*current = images;
-                    Log.i("here", "images");
-                    Intent intent = getIntent();
-                    intent.putExtra("current", "images");
-                    startActivity(getIntent());
-                    finish();*/
                 }
                 else{
                     setButtonImages(friends);
-                    /*current = friends;
-                    Intent intent = getIntent();
-                    intent.putExtra("current", "friends");
-                    startActivity(getIntent());
-                    finish();*/
-
                 }
 
             }
