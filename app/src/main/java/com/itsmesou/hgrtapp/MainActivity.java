@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     //array which will be assigned to buttons
     Integer [] current = images;
     ArrayList<String> inppass = new ArrayList<String>();
@@ -68,15 +69,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
                 if("Images".equals(spinner.getItemAtPosition(i).toString())){
-
-                    current=images;
+                    setButtonImages(images);
                 }
                 else{
-
-                    current=friends;
-                    //finish();
-                    //startActivity(getIntent());
-
+                    setButtonImages(friends);
                 }
 
             }
@@ -86,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-
+    public void setButtonImages(Integer[] current) {
         B1 = (ImageButton) findViewById(R.id.button1);
         B2 = (ImageButton) findViewById(R.id.button2);
         B3 = (ImageButton) findViewById(R.id.button3);
@@ -105,17 +102,14 @@ public class MainActivity extends AppCompatActivity {
         B15 = (ImageButton) findViewById(R.id.button15);
         B16 = (ImageButton) findViewById(R.id.button16);
 
-        //arrays
-
-
         //Shuffling array
         for (int i = 0; i < current.length; i++) {
             int index = (int) (Math.random() * current.length);
             Integer temp = current[i];
             current[i] = current[index];
             current[index] = temp;
-
         }
+
         int i = 0;
         B1.setBackgroundResource(current[i]);
         B2.setBackgroundResource(current[i + 1]);
@@ -151,10 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
     }
-
 
     public void Button1(View view) {
         Integer id=current[0].intValue();
