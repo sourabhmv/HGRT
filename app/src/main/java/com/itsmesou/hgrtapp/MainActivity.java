@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         final String str[]={"Images","Friends"};
         ArrayAdapter arrayAdapter= new ArrayAdapter(MainActivity.this,android.R.layout.simple_dropdown_item_1line,str);
         spinner.setAdapter(arrayAdapter);
+        spinner.setSelection(1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
