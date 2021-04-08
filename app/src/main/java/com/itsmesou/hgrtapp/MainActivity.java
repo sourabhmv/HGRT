@@ -32,12 +32,15 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends AppCompatActivity {
 
+    Spinner spinner;
+
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
-    Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
-            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16
+    final Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
+            R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16};
 
+    final Integer[] friends={R.drawable.fr_1,R.drawable.fr_2,R.drawable.fr_3,R.drawable.fr_4,R.drawable.fr_5,R.drawable.fr_6,R.drawable.fr_7,R.drawable.fr_8,
+            R.drawable.fr_9,R.drawable.fr_10,R.drawable.fr_11,R.drawable.fr_12,R.drawable.fr_13,R.drawable.fr_14,R.drawable.fr_15,R.drawable.fr_16};
 
-    };
 
 
     //array which will be assigned to buttons
@@ -56,6 +59,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        spinner=findViewById(R.id.spinner);
+        final String str[]={"Images","Friends"};
+        ArrayAdapter arrayAdapter= new ArrayAdapter(MainActivity.this,android.R.layout.simple_dropdown_item_1line,str);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                if("Images".equals(spinner.getItemAtPosition(i).toString())){
+
+                    current=images;
+                }
+                else{
+
+                    current=friends;
+                    //finish();
+                    //startActivity(getIntent());
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         B1 = (ImageButton) findViewById(R.id.button1);
