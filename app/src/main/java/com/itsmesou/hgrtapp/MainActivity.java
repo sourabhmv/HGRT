@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     final Integer[] friends={R.drawable.fr_1,R.drawable.fr_2,R.drawable.fr_3,R.drawable.fr_4,R.drawable.fr_5,R.drawable.fr_6,R.drawable.fr_7,R.drawable.fr_8,
             R.drawable.fr_9,R.drawable.fr_10,R.drawable.fr_11,R.drawable.fr_12,R.drawable.fr_13,R.drawable.fr_14,R.drawable.fr_15,R.drawable.fr_16};
 
+    final Integer[] animal={R.drawable.an_1,R.drawable.an_2,R.drawable.an_3,R.drawable.an_4,R.drawable.an_5,R.drawable.an_6,R.drawable.an_7,R.drawable.an_8,
+            R.drawable.an_9,R.drawable.an_10,R.drawable.an_11,R.drawable.an_12,R.drawable.an_13,R.drawable.an_14,R.drawable.an_15,R.drawable.an_16};
+
 
 
 
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     //String outpass[] ={"2131165300"};
     ArrayList<String> outpass= new ArrayList<String>();
     ArrayList<String> temop= new ArrayList<String>();
+
     String AES ="AES";
     String pa= "morazha";
 
@@ -61,20 +65,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         spinner=findViewById(R.id.spinner);
-        final String str[]={"Images","Friends"};
+        final String str[]={"Actors","Friends","Animals"};
         ArrayAdapter arrayAdapter= new ArrayAdapter(MainActivity.this,android.R.layout.simple_dropdown_item_1line,str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                if("Images".equals(spinner.getItemAtPosition(i).toString())){
+                if("Actors".equals(spinner.getItemAtPosition(i).toString())){
+                    inppass.clear();
+                    temop.clear();
+                    temop.add(0,"2131230880");
+                    temop.add(1,"2131230870");
                     setButtonImages(images);
                 }
-                else{
-                    setButtonImages(friends);
+
+                else if ("Animals".equals(spinner.getItemAtPosition(i).toString()))
+                {
+                    inppass.clear();
+                    temop.clear();
+                    temop.add(0,"2131230880");
+                    temop.add(1,"2131230870");
+                    setButtonImages(animal);
                 }
 
+                else{
+                    inppass.clear();
+                    inppass.clear();
+                    temop.clear();
+                    temop.add(0,"2131230880");
+                    temop.add(1,"2131230870");
+                    setButtonImages(friends);
+
+                }
             }
 
             @Override
@@ -85,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setButtonImages(Integer[] current) {
+
         B1 = (ImageButton) findViewById(R.id.button1);
         B2 = (ImageButton) findViewById(R.id.button2);
         B3 = (ImageButton) findViewById(R.id.button3);
@@ -128,23 +152,12 @@ public class MainActivity extends AppCompatActivity {
         B15.setBackgroundResource(current[i + 14]);
         B16.setBackgroundResource(current[i + 15]);
 
-        //outpass.add("2131165310");
 
-        //Each time opening the app the previous array will be flushed.
-        inppass.clear();
-        temop.add("2131230864");
-        temop.add("2131230854");
+
+
 
         // Encrypting content inside output array
-        String encout;
-        for(i=0;i<temop.size();i++) {
-            try {
-                encout = encrypt(temop.get(i), pa);
-                outpass.add(encout);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     public void Button1(View view) {
@@ -156,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             encstr=encrypt(strid,pa);
             //add encrypted id into array
             inppass.add(encstr);
-            //Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "ss"+inppass.get(0)+"and"+outpass.get(0)+id, Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -421,149 +434,141 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-     int timer =0;
-
+     int timer =1;
     public void Check(View view) {
-       if(timer==3) {
-           Toast.makeText(MainActivity.this, "Try after some sec", Toast.LENGTH_SHORT).show();
-           timer=0;
+       outpass.clear();
+        String encout;
+        int i;
+        for(i=0;i<temop.size();i++) {
+            try {
+                encout = encrypt(temop.get(i), pa);
+                outpass.add(encout);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (timer == 3) {
+            Toast.makeText(MainActivity.this, "Try after some sec", Toast.LENGTH_SHORT).show();
+            timer = 1;
 
-           new Handler().postDelayed(new Runnable() {
-               @Override
-               public void run() {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-                   int l1 = inppass.size();
-                   int l2 = outpass.size();
-                   int l = 0;
-                   //To fix jimitt guhan raju issue
-                   int i = 0;
-                   if (l1 < l2) {
-                       while (l1 < l2) {
-                           if (inppass != null) {
-                               inppass.add("DMPJ");
-                           }
-                           i++;
-                           l1 = inppass.size();
-
-                       }
-                   }
-                   if (l2 < l1) {
-                       while (l2 < l1) {
-                           if (outpass != null) {
-                               outpass.add("DMPJ");
-                           }
-                           i++;
-                           l2 = outpass.size();
-
-                       }
-                   }
+                    int l1 = inppass.size();
+                    int l2 = outpass.size();
+                    int l = 0;
+                    //To fix jimitt guhan raju issue
+                    int i = 0;
+                    if (l1 < l2) {
+                        while (l1 < l2) {
+                            inppass.add("DM");
+                            l1 = inppass.size();
+                            l = l2;
+                        }
 
 
-                   if (l2 < l1)
-                       l = l1;
-                   if (l1 == l2)
-                       l = l1;
+                    } else if (l2 < l1) {
+                        while (l2 < l1) {
+                            outpass.add("DM");
+                            l2 = outpass.size();
+                            l = l2;
 
-                   Integer flag = 0;
-
-                   for (i = 0; i < l; i++) {
-                       if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
-                           flag = 1;
-                       }
-                   }
-                   if (flag == 0) {
-                      // Intent intent = new Intent(this, succscr.class);
-                       Intent intent = new Intent(getApplicationContext(),succscr.class);
-                       startActivity(intent);
-                       //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                       timer=0;
-
-                       inppass.removeAll(inppass);
-
-                   } else {
-
-                           Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
-                           inppass.removeAll(inppass);
-                           timer++;
-
-                   }
+                        }
+                    } else {
+                        l = l2;
+                    }
 
 
-               }
-           }, 10000);
+                    Integer flag = 0;
 
-       }
+                    for (i = 0; i < l; i++) {
+                        if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0) {
+                        // Intent intent = new Intent(this, succscr.class);
+                        Intent intent = new Intent(getApplicationContext(), succscr.class);
+                        startActivity(intent);
+                        //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        timer = 1;
 
-
-       else {
-
-           int l1 = inppass.size();
-           int l2 = outpass.size();
-           int l = 0;
-           //To fix jimitt guhan raju issue
-           int i = 0;
-           if (l1 < l2) {
-               while (l1 < l2) {
-                   if (inppass != null) {
-                       inppass.add("DMPJ");
-                   }
-                   i++;
-                   l1 = inppass.size();
-
-               }
-           }
-           if (l2 < l1) {
-               while (l2 < l1) {
-                   if (outpass != null) {
-                       outpass.add("DMPJ");
-                   }
-                   i++;
-                   l2 = outpass.size();
-
-               }
-           }
-
-
-           if (l2 < l1)
-               l = l1;
-           if (l1 == l2)
-               l = l1;
-
-           Integer flag = 0;
-
-           for (i = 0; i < l; i++) {
-               if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
-                   flag = 1;
-               }
-           }
-           if (flag == 0) {
-               Intent intent = new Intent(this, succscr.class);
-               startActivity(intent);
-               //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-               timer=0;
-
-               inppass.removeAll(inppass);
-
-           } else {
-
-
-                   Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
-                   inppass.removeAll(inppass);
-                   timer++;
+                        inppass.clear();
 
 
 
-           }
+                    } else {
+
+                        Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
+                        inppass.clear();
+
+                        timer++;
+
+                    }
 
 
+                }
+            }, 10000);
+
+        }
+        else {
+            int l1 = inppass.size();
+            int l2 = outpass.size();
+            int l = 0;
+            //To fix jimitt guhan raju issue
+             i = 0;
+            if (l1 < l2) {
+                while (l1 < l2) {
+                    inppass.add("DM");
+                    l1 = inppass.size();
+                    l = l2;
+                }
 
 
-       }
+            } else if (l2 < l1) {
+                while (l2 < l1) {
+                    outpass.add("DM");
+                    l2 = outpass.size();
+                    l = l2;
+
+                }
+            } else {
+                l = l2;
+            }
 
 
+            Integer flag = 0;
+
+            for (i = 0; i < l; i++) {
+                if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
+                    flag = 1;
+                }
+            }
+            if (flag == 0) {
+                // Intent intent = new Intent(this, succscr.class);
+                Intent intent = new Intent(getApplicationContext(), succscr.class);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                timer = 1;
+                inppass.clear();
 
 
+            } else {
+
+                Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again" + outpass.size(), Toast.LENGTH_SHORT).show();
+                inppass.clear();
+                timer++;
+
+
+            }
+
+
+        }
     }
+
+
+
 
 
     private String encrypt(String Data, String password)throws Exception {
