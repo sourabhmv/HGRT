@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
 
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
+    private  Button login;
     final Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
             R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16};
 
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         B14 = (ImageButton) findViewById(R.id.button14);
         B15 = (ImageButton) findViewById(R.id.button15);
         B16 = (ImageButton) findViewById(R.id.button16);
+        login = findViewById(R.id.button);
 
         //Shuffling array
         for (int i = 0; i < current.length; i++) {
@@ -434,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-     int timer =1;
+     int timer =0;
     public void Check(View view) {
        outpass.clear();
         String encout;
@@ -447,65 +449,60 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if (timer == 3) {
-            Toast.makeText(MainActivity.this, "Try after some sec", Toast.LENGTH_SHORT).show();
-            timer = 1;
+        if (timer == 4) {
+
+            B1.setEnabled(false);
+            B2.setEnabled(false);
+            B3.setEnabled(false);
+            B4.setEnabled(false);
+            B5.setEnabled(false);
+            B6.setEnabled(false);
+            B7.setEnabled(false);
+            B8.setEnabled(false);
+            B9.setEnabled(false);
+            B10.setEnabled(false);
+            B11.setEnabled(false);
+            B12.setEnabled(false);
+            B13.setEnabled(false);
+            B14.setEnabled(false);
+            B15.setEnabled(false);
+            B16.setEnabled(false);
+            login.setEnabled(false);
+
+
+
+            Toast.makeText(MainActivity.this, "Try after 10 sec", Toast.LENGTH_SHORT).show();
+            timer = 0;
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
-                    int l1 = inppass.size();
-                    int l2 = outpass.size();
-                    int l = 0;
-                    //To fix jimitt guhan raju issue
-                    int i = 0;
-                    if (l1 < l2) {
-                        while (l1 < l2) {
-                            inppass.add("DM");
-                            l1 = inppass.size();
-                            l = l2;
-                        }
+                   
 
 
-                    } else if (l2 < l1) {
-                        while (l2 < l1) {
-                            outpass.add("DM");
-                            l2 = outpass.size();
-                            l = l2;
-
-                        }
-                    } else {
-                        l = l2;
-                    }
-
-
-                    Integer flag = 0;
-
-                    for (i = 0; i < l; i++) {
-                        if (inppass.get(i).compareTo(outpass.get(i)) != 0) {
-                            flag = 1;
-                        }
-                    }
-                    if (flag == 0) {
-                        // Intent intent = new Intent(this, succscr.class);
-                        Intent intent = new Intent(getApplicationContext(), succscr.class);
-                        startActivity(intent);
-                        //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        timer = 1;
-
-                        inppass.clear();
+                    B1.setEnabled(true);
+                    B2.setEnabled(true);
+                    B3.setEnabled(true);
+                    B4.setEnabled(true);
+                    B5.setEnabled(true);
+                    B6.setEnabled(true);
+                    B7.setEnabled(true);
+                    B8.setEnabled(true);
+                    B9.setEnabled(true);
+                    B10.setEnabled(true);
+                    B11.setEnabled(true);
+                    B12.setEnabled(true);
+                    B13.setEnabled(true);
+                    B14.setEnabled(true);
+                    B15.setEnabled(true);
+                    B16.setEnabled(true);
+                    login.setEnabled(true);
 
 
-
-                    } else {
-
-                        Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
-                        inppass.clear();
-
-                        timer++;
-
-                    }
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
 
 
                 }
@@ -547,16 +544,16 @@ public class MainActivity extends AppCompatActivity {
             }
             if (flag == 0) {
                 // Intent intent = new Intent(this, succscr.class);
-                Intent intent = new Intent(getApplicationContext(), succscr.class);
+                timer = 0;
+               Intent intent = new Intent(getApplicationContext(), succscr.class);
                 startActivity(intent);
                 //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                timer = 1;
                 inppass.clear();
 
 
             } else {
 
-                Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again" + outpass.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
                 inppass.clear();
                 timer++;
 
