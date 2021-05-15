@@ -54,7 +54,7 @@ public class Homescreen extends AppCompatActivity {
         //Button operation to open new activity
         button.setOnClickListener(view -> {
 
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(Homescreen.this,inpassarraychech.class);
                 startActivity(intent);
         });
 
