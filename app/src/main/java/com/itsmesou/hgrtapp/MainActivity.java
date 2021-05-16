@@ -35,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
 
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
-    private  Button login;
+    private Button login, register;
     final Integer[] images = {R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4, R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8,
             R.drawable.m9, R.drawable.m10, R.drawable.m11, R.drawable.m12, R.drawable.m13, R.drawable.m14, R.drawable.m15, R.drawable.m16};
 
-    final Integer[] friends={R.drawable.fr_1,R.drawable.fr_2,R.drawable.fr_3,R.drawable.fr_4,R.drawable.fr_5,R.drawable.fr_6,R.drawable.fr_7,R.drawable.fr_8,
-            R.drawable.fr_9,R.drawable.fr_10,R.drawable.fr_11,R.drawable.fr_12,R.drawable.fr_13,R.drawable.fr_14,R.drawable.fr_15,R.drawable.fr_16};
+    final Integer[] friends = {R.drawable.fr_1, R.drawable.fr_2, R.drawable.fr_3, R.drawable.fr_4, R.drawable.fr_5, R.drawable.fr_6, R.drawable.fr_7, R.drawable.fr_8,
+            R.drawable.fr_9, R.drawable.fr_10, R.drawable.fr_11, R.drawable.fr_12, R.drawable.fr_13, R.drawable.fr_14, R.drawable.fr_15, R.drawable.fr_16};
 
-    final Integer[] animal={R.drawable.an_1,R.drawable.an_2,R.drawable.an_3,R.drawable.an_4,R.drawable.an_5,R.drawable.an_6,R.drawable.an_7,R.drawable.an_8,
-            R.drawable.an_9,R.drawable.an_10,R.drawable.an_11,R.drawable.an_12,R.drawable.an_13,R.drawable.an_14,R.drawable.an_15,R.drawable.an_16};
+    final Integer[] animal = {R.drawable.an_1, R.drawable.an_2, R.drawable.an_3, R.drawable.an_4, R.drawable.an_5, R.drawable.an_6, R.drawable.an_7, R.drawable.an_8,
+            R.drawable.an_9, R.drawable.an_10, R.drawable.an_11, R.drawable.an_12, R.drawable.an_13, R.drawable.an_14, R.drawable.an_15, R.drawable.an_16};
 
 
 
@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 if("Actors".equals(spinner.getItemAtPosition(i).toString())){
                     inppass.clear();
                     temop.clear();
-                    Bundle bundle= getIntent().getExtras();
+                   /* Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));
+                    temop.add(1,arrayList.get(1));*/
                     setButtonImages(images);
                 }
 
@@ -87,20 +87,20 @@ public class MainActivity extends AppCompatActivity {
                 {
                     inppass.clear();
                     temop.clear();
-                    Bundle bundle= getIntent().getExtras();
+                    /*Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));
+                    temop.add(1,arrayList.get(1));*/
                     setButtonImages(animal);
                 }
 
                 else{
                     inppass.clear();
                     temop.clear();
-                    Bundle bundle= getIntent().getExtras();
+                   /* Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));
+                    temop.add(1,arrayList.get(1));*/
                     setButtonImages(friends);
 
                 }
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         B15 = (ImageButton) findViewById(R.id.button15);
         B16 = (ImageButton) findViewById(R.id.button16);
         login = findViewById(R.id.button);
+        register = findViewById(R.id.register);
 
         //Shuffling array
         for (int i = 0; i < current.length; i++) {
@@ -569,17 +570,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void Register(View view) {
+        Intent intent = new Intent(MainActivity.this, inpassarraychech.class);
+        startActivity(intent);
+    }
 
-
-
-
-    private String encrypt(String Data, String password)throws Exception {
-        SecretKeySpec key =generatekey(password);
+    private String encrypt(String Data, String password) throws Exception {
+        SecretKeySpec key = generatekey(password);
         Cipher c = Cipher.getInstance(AES);
-        c.init(Cipher.ENCRYPT_MODE,key);
+        c.init(Cipher.ENCRYPT_MODE, key);
         byte[] encVal = c.doFinal(Data.getBytes());
-        String encryptedValue = Base64.encodeToString(encVal,Base64.DEFAULT);
-        return  encryptedValue;
+        String encryptedValue = Base64.encodeToString(encVal, Base64.DEFAULT);
+        return encryptedValue;
 
     }
 
