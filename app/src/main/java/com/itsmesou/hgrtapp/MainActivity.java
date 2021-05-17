@@ -80,34 +80,36 @@ public class MainActivity extends AppCompatActivity {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
-                    Bundle bundle = getIntent().getExtras();
 
                     /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
                     }*/
                     current = images;
                     setButtonImages(images);
-                    // Data from shared preference
-                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
-                    for ( i=0; i<size;i++){
-                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
-                    }*/
+                    // Getting code
+
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
 
                 } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
-                    Bundle bundle = getIntent().getExtras();
                     /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
                     }*/
                     current = animal;
                     setButtonImages(animal);
-                    // Data from shared preference
-                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
-                    for ( i=0; i<size;i++){
-                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
-                    }*/
+
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
                 } else {
                     inppass.clear();
                     temop.clear();
@@ -118,11 +120,12 @@ public class MainActivity extends AppCompatActivity {
                     }*/
                     current = friends;
                     setButtonImages(friends);
-                    // Data from shared preference
-                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
-                    for ( i=0; i<size;i++){
-                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
-                    }*/
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
                 }
             }
 

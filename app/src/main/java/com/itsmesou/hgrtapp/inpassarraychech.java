@@ -216,10 +216,9 @@ public class inpassarraychech extends AppCompatActivity {
             Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
         }
 
-        // Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
-        // intent.putExtra("string", password);
-        //startActivity(intent);
-        Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
+        startActivity(intent);
+        // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
     }
 
 
