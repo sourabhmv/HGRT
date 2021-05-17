@@ -79,8 +79,9 @@ public class MainActivity extends AppCompatActivity {
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0, arrayList.get(0));
-                    temop.add(1, arrayList.get(1));
+                    for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }
                     current = images;
                     setButtonImages(images);
                 } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
@@ -89,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0, arrayList.get(0));
-                    temop.add(1, arrayList.get(1));
+                    for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }
                     current = animal;
                     setButtonImages(animal);
                 } else {
@@ -99,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0, arrayList.get(0));
-                    temop.add(1, arrayList.get(1));
+                    for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }
                     current = friends;
                     setButtonImages(friends);
 
