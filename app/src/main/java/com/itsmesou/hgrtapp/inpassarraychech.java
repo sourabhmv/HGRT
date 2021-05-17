@@ -3,6 +3,7 @@ package com.itsmesou.hgrtapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,14 +29,17 @@ public class inpassarraychech extends AppCompatActivity {
     private Button login;
 
     ArrayList<String> password = new ArrayList<String>();
+    private final String KEY = "mykey";
+    private final String PREF_KEY = "filename";
+    ArrayList<String> sending_password = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inpassarraychech);
 
-      /* password.clear();
-       password.add(0,"2131230880");
+        password.clear();
+       /*password.add(0,"2131230880");
        password.add(1,"2131230870");
         Intent intent= new Intent(inpassarraychech.this,MainActivity.class);
         intent.putExtra("string",password);
@@ -54,18 +58,21 @@ public class inpassarraychech extends AppCompatActivity {
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
                     temop.add(1,arrayList.get(1));*/
+                    current = images;
                     setButtonImages(images);
                 } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
                     /*Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
                     temop.add(1,arrayList.get(1));*/
+                    current = animal;
                     setButtonImages(animal);
                 } else {
                    /* Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
                     temop.add(1,arrayList.get(1));*/
+                    current = friends;
                     setButtonImages(friends);
 
                 }
@@ -120,69 +127,90 @@ public class inpassarraychech extends AppCompatActivity {
 
     public void Button1(View view) {
 
+        password.add(String.valueOf(current[0].intValue()));
     }
 
     public void Button2(View view) {
 
+        password.add(String.valueOf(current[1].intValue()));
     }
 
     public void Button3(View view) {
 
+        password.add(String.valueOf(current[2].intValue()));
     }
 
     public void Button4(View view) {
 
+        password.add(String.valueOf(current[3].intValue()));
     }
 
     public void Button5(View view) {
 
+        password.add(String.valueOf(current[4].intValue()));
     }
 
     public void Button6(View view) {
-
+        password.add(String.valueOf(current[5].intValue()));
     }
 
     public void Button7(View view) {
-
+        password.add(String.valueOf(current[6].intValue()));
     }
 
     public void Button8(View view) {
-
+        password.add(String.valueOf(current[7].intValue()));
     }
 
     public void Button9(View view) {
-
+        password.add(String.valueOf(current[8].intValue()));
     }
 
     public void Button10(View view) {
-
+        password.add(String.valueOf(current[9].intValue()));
     }
 
     public void Button11(View view) {
-
+        password.add(String.valueOf(current[10].intValue()));
     }
 
     public void Button12(View view) {
-
+        password.add(String.valueOf(current[11].intValue()));
     }
 
     public void Button13(View view) {
-
+        password.add(String.valueOf(current[12].intValue()));
     }
 
     public void Button14(View view) {
-
+        password.add(String.valueOf(current[13].intValue()));
     }
 
     public void Button15(View view) {
-
+        password.add(String.valueOf(current[14].intValue()));
     }
 
     public void Button16(View view) {
-
+        password.add(String.valueOf(current[15].intValue()));
     }
 
     public void Check(View view) {
+
+       /* SharedPreferences.Editor editor=getSharedPreferences(PREF_KEY,MODE_PRIVATE).edit();
+        editor.commit();
+        for (int i=0;i<password.size();i++){
+            SharedPreferences.Editor editor1=getSharedPreferences(PREF_KEY,MODE_PRIVATE).edit();
+            editor1.putString(KEY+i,password.get(i));
+            editor1.commit();
+        }
+            int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
+            for (int i=0; i<size;i++){
+                sending_password.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
+            }*/
+
+        Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
+        intent.putExtra("string", password);
+        startActivity(intent);
 
     }
 

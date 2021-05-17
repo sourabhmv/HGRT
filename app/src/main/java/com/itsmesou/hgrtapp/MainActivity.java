@@ -76,31 +76,32 @@ public class MainActivity extends AppCompatActivity {
                 if("Actors".equals(spinner.getItemAtPosition(i).toString())){
                     inppass.clear();
                     temop.clear();
-                   /* Bundle bundle= getIntent().getExtras();
+                    outpass.clear();
+                    Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));*/
+                    temop.add(0, arrayList.get(0));
+                    temop.add(1, arrayList.get(1));
+                    current = images;
                     setButtonImages(images);
-                }
-
-                else if ("Animals".equals(spinner.getItemAtPosition(i).toString()))
-                {
+                } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
                     inppass.clear();
                     temop.clear();
-                    /*Bundle bundle= getIntent().getExtras();
+                    outpass.clear();
+                    Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));*/
+                    temop.add(0, arrayList.get(0));
+                    temop.add(1, arrayList.get(1));
+                    current = animal;
                     setButtonImages(animal);
-                }
-
-                else{
+                } else {
                     inppass.clear();
                     temop.clear();
-                   /* Bundle bundle= getIntent().getExtras();
+                    outpass.clear();
+                    Bundle bundle = getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    temop.add(0,arrayList.get(0));
-                    temop.add(1,arrayList.get(1));*/
+                    temop.add(0, arrayList.get(0));
+                    temop.add(1, arrayList.get(1));
+                    current = friends;
                     setButtonImages(friends);
 
                 }
