@@ -49,15 +49,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     //array which will be assigned to buttons
-    Integer [] current = images;
+    Integer[] current = images;
     ArrayList<String> inppass = new ArrayList<String>();
     Integer counter = 0;
     //String outpass[] ={"2131165300"};
-    ArrayList<String> outpass= new ArrayList<String>();
-    ArrayList<String> temop= new ArrayList<String>();
+    ArrayList<String> outpass = new ArrayList<String>();
+    ArrayList<String> temop = new ArrayList<String>();
 
-    String AES ="AES";
-    String pa= "morazha";
+    String AES = "AES";
+    String pa = "morazha";
+
+    private final String KEY = "mykey";
+    private final String PREF_KEY = "filename";
 
 
     @Override
@@ -65,48 +68,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        spinner=findViewById(R.id.spinner);
-        final String str[]={"Actors","Friends","Animals"};
-        ArrayAdapter arrayAdapter= new ArrayAdapter(MainActivity.this,android.R.layout.simple_dropdown_item_1line,str);
+        spinner = findViewById(R.id.spinner);
+        final String str[] = {"Actors", "Friends", "Animals"};
+        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_dropdown_item_1line, str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                if("Actors".equals(spinner.getItemAtPosition(i).toString())){
+                if("Actors".equals(spinner.getItemAtPosition(i).toString())) {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
-                    ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    for (i = 0; i < arrayList.size(); i++) {
+
+                    /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
-                    }
+                    }*/
                     current = images;
                     setButtonImages(images);
+                    // Data from shared preference
+                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
+                    for ( i=0; i<size;i++){
+                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
+                    }*/
+
                 } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
-                    ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    for (i = 0; i < arrayList.size(); i++) {
+                    /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
-                    }
+                    }*/
                     current = animal;
                     setButtonImages(animal);
+                    // Data from shared preference
+                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
+                    for ( i=0; i<size;i++){
+                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
+                    }*/
                 } else {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
                     Bundle bundle = getIntent().getExtras();
-                    ArrayList<String> arrayList = bundle.getStringArrayList("string");
-                    for (i = 0; i < arrayList.size(); i++) {
+                    /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
-                    }
+                    }*/
                     current = friends;
                     setButtonImages(friends);
-
+                    // Data from shared preference
+                    /*int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
+                    for ( i=0; i<size;i++){
+                        temop.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
+                    }*/
                 }
             }
 

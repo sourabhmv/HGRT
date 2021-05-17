@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -195,23 +196,27 @@ public class inpassarraychech extends AppCompatActivity {
     }
 
     public void Check(View view) {
-
-       /* SharedPreferences.Editor editor=getSharedPreferences(PREF_KEY,MODE_PRIVATE).edit();
+        // Pushing code
+        SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
         editor.commit();
-        for (int i=0;i<password.size();i++){
-            SharedPreferences.Editor editor1=getSharedPreferences(PREF_KEY,MODE_PRIVATE).edit();
-            editor1.putString(KEY+i,password.get(i));
+        for (int i = 0; i < password.size(); i++) {
+            SharedPreferences.Editor editor1 = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
+            editor1.putString(KEY + i, password.get(i));
             editor1.commit();
+
+
         }
-            int size=getSharedPreferences(PREF_KEY,MODE_PRIVATE).getInt(KEY+"size",0);
-            for (int i=0; i<size;i++){
-                sending_password.add(getSharedPreferences(PREF_KEY,MODE_PRIVATE).getString(KEY+i,""));
-            }*/
+        // Getting code
 
-        Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
-        intent.putExtra("string", password);
-        startActivity(intent);
+        int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+        for (int i = 0; i < size; i++) {
+            sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+        }
 
+        // Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
+        // intent.putExtra("string", password);
+        //startActivity(intent);
+        Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
     }
 
 
