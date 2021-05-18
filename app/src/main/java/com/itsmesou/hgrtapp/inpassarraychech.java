@@ -196,29 +196,35 @@ public class inpassarraychech extends AppCompatActivity {
     }
 
     public void Check(View view) {
-        // Pushing code
+
+        if (password.size() != 0) {
+            // Pushing code
         /*SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
         editor.apply();*/
-        SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
-        for (int i = 0; i < password.size(); i++) {
-            Log.i("here : ", password.get(i));
-            editor.putString(KEY + i, password.get(i));
-        }
-        // after pushing store the key size
-        editor.putInt(KEY + "size", password.size());
-        editor.apply();
-        // Getting code
+            SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
+            for (int i = 0; i < password.size(); i++) {
+                Log.i("here : ", password.get(i));
+                editor.putString(KEY + i, password.get(i));
+            }
+            // after pushing store the key size
+            editor.putInt(KEY + "size", password.size());
+            editor.apply();
+            // Getting code
 
-        int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
-        Log.i("here after : ", String.valueOf(size));
-        for (int i = 0; i < size; i++) {
-            sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-            Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-        }
+            int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+            Log.i("here after : ", String.valueOf(size));
+            for (int i = 0; i < size; i++) {
+                sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+            }
 
-        Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
-        startActivity(intent);
-        // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
+            startActivity(intent);
+            // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
+        } else {
+
+            Toast.makeText(inpassarraychech.this, "Please select any combination as password", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
