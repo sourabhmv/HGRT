@@ -69,7 +69,7 @@ public class Homescreen extends AppCompatActivity {
                 startActivity(intent);
             } else {
 
-                Intent intent = new Intent(Homescreen.this, Mobilenumber.class);
+                Intent intent = new Intent(Homescreen.this, MainActivity.class);
                 startActivity(intent);
             }
         });

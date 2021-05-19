@@ -584,6 +584,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void Register(View view) {
         Toast.makeText(MainActivity.this, "Nee nokkum enn ariya ith aakan korachude pani nd", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, Forgetactivity.class);
+        startActivity(intent);
     }
 
     private String encrypt(String Data, String password) throws Exception {

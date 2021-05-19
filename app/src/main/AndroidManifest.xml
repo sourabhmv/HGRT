@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".otpverify"></activity>
+        <activity android:name=".Forgetactivity"></activity>
+        <activity android:name=".Phonenumsave" />
+        <activity android:name=".otpverify" />
         <activity android:name=".Mobilenumber" />
         <activity android:name=".inpassarraychech" />
         <activity android:name=".Homescreen">

@@ -34,6 +34,10 @@ public class inpassarraychech extends AppCompatActivity {
     private final String PREF_KEY = "filename";
     ArrayList<String> sending_password = new ArrayList<String>();
 
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "text";
+    private String text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -218,9 +222,20 @@ public class inpassarraychech extends AppCompatActivity {
                 Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
             }
 
-            Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
-            startActivity(intent);
-            // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            text = sharedPreferences.getString(TEXT, "");
+
+            if (text.isEmpty()) {
+
+                Intent intent = new Intent(inpassarraychech.this, Phonenumsave.class);
+                startActivity(intent);
+                // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
+            } else {
+
+                Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
+                startActivity(intent);
+            }
+
         } else {
 
             Toast.makeText(inpassarraychech.this, "Please select any combination as password", Toast.LENGTH_SHORT).show();

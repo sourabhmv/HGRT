@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
-    android:scrollbars="none"
-    tools:context=".Mobilenumber">
+    tools:context=".Phonenumsave">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,50 +14,21 @@
         android:orientation="vertical">
 
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="OTP VERIFICATION"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="50dp"
-            android:text="We will send you an one time OTP on this given mobile number"
-            android:textAlignment="center"
-            android:textSize="14sp" />
-
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/otp"
+                android:id="@+id/savenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:text="GET OTP"
+                android:text="Save Number"
                 android:textStyle="bold" />
-
-            <ProgressBar
-                android:id="@+id/progresssending"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:visibility="gone" />
 
 
         </FrameLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +62,6 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,6 +87,19 @@
 
 
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="50dp"
+            android:text="Save your phone number so you can use forget password feature"
+            android:textAlignment="center"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
