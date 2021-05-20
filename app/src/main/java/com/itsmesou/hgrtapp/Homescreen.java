@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -26,6 +27,7 @@ public class Homescreen extends AppCompatActivity {
     private final String KEY = "mykey";
     private final String PREF_KEY = "filename";
     ArrayList<String> temop = new ArrayList<String>();
+
 
 
     @Override
@@ -68,7 +70,7 @@ public class Homescreen extends AppCompatActivity {
                 Intent intent = new Intent(Homescreen.this, inpassarraychech.class);
                 startActivity(intent);
             } else {
-
+                Toast.makeText(this, temop.get(0), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Homescreen.this, MainActivity.class);
                 startActivity(intent);
             }

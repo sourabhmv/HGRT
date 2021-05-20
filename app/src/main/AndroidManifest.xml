@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Forgetactivity"></activity>
+        <activity android:name=".Forgetactivity" />
         <activity android:name=".Phonenumsave" />
         <activity android:name=".otpverify" />
         <activity android:name=".Mobilenumber" />
