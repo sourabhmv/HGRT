@@ -24,6 +24,7 @@ public class inpassarraychech extends AppCompatActivity {
             R.drawable.fr_9, R.drawable.fr_10, R.drawable.fr_11, R.drawable.fr_12, R.drawable.fr_13, R.drawable.fr_14, R.drawable.fr_15, R.drawable.fr_16};
     final Integer[] animal = {R.drawable.an_1, R.drawable.an_2, R.drawable.an_3, R.drawable.an_4, R.drawable.an_5, R.drawable.an_6, R.drawable.an_7, R.drawable.an_8,
             R.drawable.an_9, R.drawable.an_10, R.drawable.an_11, R.drawable.an_12, R.drawable.an_13, R.drawable.an_14, R.drawable.an_15, R.drawable.an_16};
+    final Integer[] userchoice = {};
     Spinner spinner;
     Integer[] current = images;
     private ImageButton B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11, B12, B13, B14, B15, B16;
@@ -51,7 +52,7 @@ public class inpassarraychech extends AppCompatActivity {
         startActivity(intent);*/
 
         spinner = findViewById(R.id.spinner);
-        final String str[] = {"Actors", "Friends", "Animals"};
+        final String str[] = {"Actors", "Friends", "Animals", "User Choice"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(inpassarraychech.this, android.R.layout.simple_dropdown_item_1line, str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
@@ -72,13 +73,23 @@ public class inpassarraychech extends AppCompatActivity {
                     temop.add(1,arrayList.get(1));*/
                     current = animal;
                     setButtonImages(animal);
-                } else {
+                } else if ("Friends".equals(spinner.getItemAtPosition(i).toString())) {
                    /* Bundle bundle= getIntent().getExtras();
                     ArrayList<String> arrayList = bundle.getStringArrayList("string");
                     temop.add(0,arrayList.get(0));
                     temop.add(1,arrayList.get(1));*/
                     current = friends;
                     setButtonImages(friends);
+
+                } else {
+                    if (userchoice == null) {
+                        Toast.makeText(inpassarraychech.this, "You need to select Images first", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        current = userchoice;
+                        setButtonImages(userchoice);
+
+                    }
 
                 }
             }
