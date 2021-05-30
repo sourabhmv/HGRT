@@ -83,7 +83,11 @@ public class inpassarraychech extends AppCompatActivity {
 
                 } else {
                     if (userchoice == null) {
+                        setButtonImages(friends);
+                        current=friends;
                         Toast.makeText(inpassarraychech.this, "You need to select Images first", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(inpassarraychech.this, Browseimages.class);
+                        startActivity(intent);
 
                     } else {
                         current = userchoice;
@@ -251,6 +255,11 @@ public class inpassarraychech extends AppCompatActivity {
 
             Toast.makeText(inpassarraychech.this, "Please select any combination as password", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void Clear(View view) {
+        password.clear();
+        Toast.makeText(this, "Current selection has been cleard", Toast.LENGTH_LONG).show();
     }
 
 
