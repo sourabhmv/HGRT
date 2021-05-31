@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
@@ -23,6 +24,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     final Integer[] animal = {R.drawable.an_1, R.drawable.an_2, R.drawable.an_3, R.drawable.an_4, R.drawable.an_5, R.drawable.an_6, R.drawable.an_7, R.drawable.an_8,
             R.drawable.an_9, R.drawable.an_10, R.drawable.an_11, R.drawable.an_12, R.drawable.an_13, R.drawable.an_14, R.drawable.an_15, R.drawable.an_16};
 
+    // array of uri
+    List<Uri> imagesList, friendsList, animalList, userChoiceList, currentList;
 
     //array which will be assigned to buttons
     Integer[] current = images;
@@ -60,10 +65,98 @@ public class MainActivity extends AppCompatActivity {
     private final String KEY = "mykey";
     private final String PREF_KEY = "filename";
 
-
     int timer = 0;
 
-    public void setButtonImages(Integer[] current) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // converting int id to uri of all the lists
+        imagesList = convertIntToUri(images);
+        animalList = convertIntToUri(animal);
+        friendsList = convertIntToUri(friends);
+
+        spinner = findViewById(R.id.spinner);
+        final String str[] = {"Actors", "Friends", "Animals"};
+        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_dropdown_item_1line, str);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setSelection(1);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                if ("Actors".equals(spinner.getItemAtPosition(i).toString())) {
+                    inppass.clear();
+                    temop.clear();
+                    outpass.clear();
+
+                    /*for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }*/
+                    currentList = imagesList;
+                    setButtonImages(imagesList);
+                    // Getting code
+
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
+
+                } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
+                    inppass.clear();
+                    temop.clear();
+                    outpass.clear();
+                    /*for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }*/
+                    currentList = animalList;
+                    setButtonImages(animalList);
+
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
+                } else {
+                    inppass.clear();
+                    temop.clear();
+                    outpass.clear();
+                    Bundle bundle = getIntent().getExtras();
+                    /*for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }*/
+                    currentList = friendsList;
+                    setButtonImages(friendsList);
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    // function to convert int array of images to uri array
+    public List<Uri> convertIntToUri(Integer[] arrayInt) {
+        List<Uri> returnArray = new ArrayList<>();
+        for (Integer integer : arrayInt) {
+            //addition to the code
+            Uri path = Uri.parse("android.resource://com.itsmesou.hgrtapp/" + integer);
+            returnArray.add(path);
+        }
+        return returnArray;
+    }
+
+    public void setButtonImages(List<Uri> current) {
 
         B1 = (ImageButton) findViewById(R.id.button1);
         B2 = (ImageButton) findViewById(R.id.button2);
@@ -84,108 +177,33 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.button);
         register = findViewById(R.id.register);
 
-        //Shuffling array
-        for (int i = 0; i < current.length; i++) {
+        //Shuffling list
+        /*for (int i = 0; i < current.length; i++) {
             int index = (int) (Math.random() * current.length);
             Integer temp = current[i];
             current[i] = current[index];
             current[index] = temp;
-        }
+        }*/
+        Collections.shuffle(current);
 
-        int i = 0;
-        B1.setBackgroundResource(current[i]);
-        B2.setBackgroundResource(current[i + 1]);
-        B3.setBackgroundResource(current[i + 2]);
-        B4.setBackgroundResource(current[i + 3]);
-        B5.setBackgroundResource(current[i + 4]);
-        B6.setBackgroundResource(current[i + 5]);
-        B7.setBackgroundResource(current[i + 6]);
-        B8.setBackgroundResource(current[i + 7]);
-        B9.setBackgroundResource(current[i + 8]);
-        B10.setBackgroundResource(current[i + 9]);
-        B11.setBackgroundResource(current[i + 10]);
-        B12.setBackgroundResource(current[i + 11]);
-        B13.setBackgroundResource(current[i + 12]);
-        B14.setBackgroundResource(current[i + 13]);
-        B15.setBackgroundResource(current[i + 14]);
-        B16.setBackgroundResource(current[i + 15]);
-
-
+        B1.setImageURI(current.get(0));
+        B2.setImageURI(current.get(1));
+        B3.setImageURI(current.get(2));
+        B4.setImageURI(current.get(3));
+        B5.setImageURI(current.get(4));
+        B6.setImageURI(current.get(5));
+        B7.setImageURI(current.get(6));
+        B8.setImageURI(current.get(7));
+        B9.setImageURI(current.get(8));
+        B10.setImageURI(current.get(9));
+        B11.setImageURI(current.get(10));
+        B12.setImageURI(current.get(11));
+        B13.setImageURI(current.get(12));
+        B14.setImageURI(current.get(13));
+        B15.setImageURI(current.get(14));
+        B16.setImageURI(current.get(15));
         // Encrypting content inside output array
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        spinner = findViewById(R.id.spinner);
-        final String str[] = {"Actors", "Friends", "Animals"};
-        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_dropdown_item_1line, str);
-        spinner.setAdapter(arrayAdapter);
-        spinner.setSelection(1);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                if ("Actors".equals(spinner.getItemAtPosition(i).toString())) {
-                    inppass.clear();
-                    temop.clear();
-                    outpass.clear();
-
-                    /*for (i = 0; i < arrayList.size(); i++) {
-                        temop.add(i, arrayList.get(i));
-                    }*/
-                    current = images;
-                    setButtonImages(images);
-                    // Getting code
-
-                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
-                    Log.i("here after : ", String.valueOf(size));
-                    for (i = 0; i < size; i++) {
-                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                    }
-
-                } else if ("Animals".equals(spinner.getItemAtPosition(i).toString())) {
-                    inppass.clear();
-                    temop.clear();
-                    outpass.clear();
-                    /*for (i = 0; i < arrayList.size(); i++) {
-                        temop.add(i, arrayList.get(i));
-                    }*/
-                    current = animal;
-                    setButtonImages(animal);
-
-                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
-                    for (i = 0; i < size; i++) {
-                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                    }
-                } else {
-                    inppass.clear();
-                    temop.clear();
-                    outpass.clear();
-                    Bundle bundle = getIntent().getExtras();
-                    /*for (i = 0; i < arrayList.size(); i++) {
-                        temop.add(i, arrayList.get(i));
-                    }*/
-                    current = friends;
-                    setButtonImages(friends);
-                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
-                    Log.i("here after : ", String.valueOf(size));
-                    for (i = 0; i < size; i++) {
-                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public void Button1(View view) {
