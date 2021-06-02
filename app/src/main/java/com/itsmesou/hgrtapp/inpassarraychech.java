@@ -246,7 +246,7 @@ public class inpassarraychech extends AppCompatActivity {
     }
 
     public void Check(View view) {
-        Toast.makeText(this, password.get(0), Toast.LENGTH_SHORT).show();
+       Toast.makeText(this, password.get(0), Toast.LENGTH_SHORT).show();
 
         if (password.size() != 0) {
 
@@ -271,12 +271,12 @@ public class inpassarraychech extends AppCompatActivity {
         editor.apply();*/
 
             SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
-            for ( i = 0; i < outpass.size(); i++) {
-                Log.i("here : ", outpass.get(i));
-                editor.putString(KEY + i, outpass.get(i));
+            for ( i = 0; i < password.size(); i++) {
+                Log.i("here : ", password.get(i));
+                editor.putString(KEY + i, password.get(i));
             }
             // after pushing store the key size
-            editor.putInt(KEY + "size", outpass.size());
+            editor.putInt(KEY + "size", password.size());
             editor.apply();
             // Getting code
 
