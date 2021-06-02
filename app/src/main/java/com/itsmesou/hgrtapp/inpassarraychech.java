@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,8 +16,13 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class inpassarraychech extends AppCompatActivity {
 
@@ -28,6 +34,10 @@ public class inpassarraychech extends AppCompatActivity {
     final Integer[] animal = {R.drawable.an_1, R.drawable.an_2, R.drawable.an_3, R.drawable.an_4, R.drawable.an_5, R.drawable.an_6, R.drawable.an_7, R.drawable.an_8,
             R.drawable.an_9, R.drawable.an_10, R.drawable.an_11, R.drawable.an_12, R.drawable.an_13, R.drawable.an_14, R.drawable.an_15, R.drawable.an_16};
     final Integer[] userchoice = {};
+    String AES = "AES";
+    String pa = "morazha";
+
+    ArrayList<String> outpass = new ArrayList<String>();
 
     // array of uri
     List<Uri> imagesList, friendsList, animalList, userChoiceList, currentList;
@@ -236,24 +246,43 @@ public class inpassarraychech extends AppCompatActivity {
     }
 
     public void Check(View view) {
+        Toast.makeText(this, password.get(0), Toast.LENGTH_SHORT).show();
 
         if (password.size() != 0) {
+
+            //encryption
+
+            outpass.clear();
+            String encout;
+            int i;
+            for (i = 0; i < password.size(); i++) {
+                try {
+                    encout = encrypt(password.get(i), pa);
+                    outpass.add(encout);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
             // Pushing code
         /*SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
         editor.apply();*/
+
             SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
-            for (int i = 0; i < password.size(); i++) {
-                Log.i("here : ", password.get(i));
-                editor.putString(KEY + i, password.get(i));
+            for ( i = 0; i < outpass.size(); i++) {
+                Log.i("here : ", outpass.get(i));
+                editor.putString(KEY + i, outpass.get(i));
             }
             // after pushing store the key size
-            editor.putInt(KEY + "size", password.size());
+            editor.putInt(KEY + "size", outpass.size());
             editor.apply();
             // Getting code
 
             int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
             Log.i("here after : ", String.valueOf(size));
-            for (int i = 0; i < size; i++) {
+            for (i = 0; i < size; i++) {
                 sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                 Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
             }
@@ -272,7 +301,8 @@ public class inpassarraychech extends AppCompatActivity {
                 startActivity(intent);
             }
 
-        } else {
+        }
+        else {
 
             Toast.makeText(inpassarraychech.this, "Please select any combination as password", Toast.LENGTH_SHORT).show();
         }
@@ -281,6 +311,27 @@ public class inpassarraychech extends AppCompatActivity {
     public void Clear(View view) {
         password.clear();
         Toast.makeText(this, "Current selection has been cleard", Toast.LENGTH_LONG).show();
+    }
+
+    private String encrypt(String Data, String password) throws Exception {
+        SecretKeySpec key = generatekey(password);
+        Cipher c = Cipher.getInstance(AES);
+        c.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encVal = c.doFinal(Data.getBytes());
+        String encryptedValue = Base64.encodeToString(encVal, Base64.DEFAULT);
+        return encryptedValue;
+
+    }
+
+    private SecretKeySpec generatekey(String password) throws Exception {
+        final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
+        digest.update(bytes, 0, bytes.length);
+        byte[] key = digest.digest();
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+        return secretKeySpec;
+
+
     }
 
 

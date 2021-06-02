@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             encstr = encrypt(strid, pa);
             //add encrypted id into array
             inppass.add(encstr);
-            Toast.makeText(MainActivity.this, "ss" + inppass.get(0) + "and" + outpass.get(0) + id, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "s " + inppass.get(0) + " and " + temop.get(0), Toast.LENGTH_SHORT).show();
             //Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
             counter++;
         } catch (Exception e) {
@@ -479,16 +479,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void Check(View view) {
         outpass.clear();
-        String encout;
-        int i;
-        for (i = 0; i < temop.size(); i++) {
-            try {
-                encout = encrypt(temop.get(i), pa);
-                outpass.add(encout);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        outpass=temop;
+
         if (timer == 4) {
 
             B1.setEnabled(false);
@@ -549,6 +541,7 @@ public class MainActivity extends AppCompatActivity {
             int l1 = inppass.size();
             int l2 = outpass.size();
             int l = 0;
+            int i;
             //To fix jimitt guhan raju issue
             i = 0;
             if (l1 < l2) {
@@ -578,6 +571,7 @@ public class MainActivity extends AppCompatActivity {
                     flag = 1;
                 }
             }
+            Toast.makeText(this, "H"+outpass.get(0)+"and"+inppass.get(0)+"i", Toast.LENGTH_SHORT).show();
             if (flag == 0) {
                 // Intent intent = new Intent(this, succscr.class);
                 timer = 0;
@@ -598,6 +592,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        // Toast.makeText(this, inppass.get(0)+"and h"+temop.get(0)+"i", Toast.LENGTH_SHORT).show();
     }
 
     public void Register(View view) {
