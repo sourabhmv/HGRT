@@ -250,8 +250,6 @@ public class inpassarraychech extends AppCompatActivity {
 
         if (password.size() != 0) {
 
-            //encryption
-
             outpass.clear();
             String encout;
             int i;
