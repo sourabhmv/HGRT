@@ -250,8 +250,11 @@ public class inpassarraychech extends AppCompatActivity {
 
         if (password.size() != 0) {
 
-            //encryption
+            for(int i=0;i<password.size();i++) {
+                Log.i("here password ", password.get(i));
+            }
 
+            //encryption
             outpass.clear();
             String encout;
             int i;
@@ -264,39 +267,33 @@ public class inpassarraychech extends AppCompatActivity {
                 }
             }
 
-
-
             // Pushing code
-        /*SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
-        editor.apply();*/
-
             SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
             for ( i = 0; i < outpass.size(); i++) {
-                Log.i("here : ", outpass.get(i));
+                Log.i("here outpass", outpass.get(i));
                 editor.putString(KEY + i, outpass.get(i));
             }
+
             // after pushing store the key size
             editor.putInt(KEY + "size", outpass.size());
             editor.apply();
-            // Getting code
 
+            // Getting code
             int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
-            Log.i("here after : ", String.valueOf(size));
+            Log.i("here after size", String.valueOf(size));
             for (i = 0; i < size; i++) {
                 sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                Log.i("here after ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
             }
 
             SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             text = sharedPreferences.getString(TEXT, "");
 
             if (text.isEmpty()) {
-
                 Intent intent = new Intent(inpassarraychech.this, Phonenumsave.class);
                 startActivity(intent);
                 // Toast.makeText(inpassarraychech.this, "Password saved" + password.get(0) + "and" + sending_password.get(0), Toast.LENGTH_SHORT).show();
             } else {
-
                 Intent intent = new Intent(inpassarraychech.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -330,7 +327,6 @@ public class inpassarraychech extends AppCompatActivity {
         byte[] key = digest.digest();
         SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
         return secretKeySpec;
-
 
     }
 
