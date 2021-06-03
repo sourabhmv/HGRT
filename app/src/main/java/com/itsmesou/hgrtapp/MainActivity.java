@@ -589,12 +589,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), succscr.class);
                 startActivity(intent);
                 //Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, inppass.get(0)+inppass.get(1)+inppass.get(0)+"and h"+outpass.get(0)+outpass.get(1)+outpass.get(2)+"i", Toast.LENGTH_SHORT).show();
                 inppass.clear();
 
 
             } else {
 
                 Toast.makeText(MainActivity.this, "Wrong Password!!! Try Again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, inppass.get(0)+inppass.get(1)+inppass.get(0)+"and h"+outpass.get(0)+outpass.get(1)+outpass.get(2)+"i", Toast.LENGTH_SHORT).show();
                 inppass.clear();
                 timer++;
 
@@ -603,7 +605,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        // Toast.makeText(this, inppass.get(0)+"and h"+temop.get(0)+"i", Toast.LENGTH_SHORT).show();
+
         
     }
 
