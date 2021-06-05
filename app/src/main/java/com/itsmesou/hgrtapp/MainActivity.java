@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     String pa = "morazha";
 
     private final String KEY = "mykey";
+    private final String KEYY = "mykeyy";
     private final String PREF_KEY = "filename";
 
     int timer = 0;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         friendsList = convertIntToUri(friends);
 
         spinner = findViewById(R.id.spinner);
-        final String str[] = {"Actors", "Friends", "Animals"};
+        final String str[] = {"Actors", "Friends", "Animals","User Choice"};
         ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_dropdown_item_1line, str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
@@ -119,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
                         temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                         Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                     }
-                } else {
+                }
+                else if("Friends".equals(spinner.getItemAtPosition(i).toString())) {
                     inppass.clear();
                     temop.clear();
                     outpass.clear();
@@ -135,6 +137,33 @@ public class MainActivity extends AppCompatActivity {
                         temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                         Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                     }
+                }
+
+                else {
+
+                    inppass.clear();
+                    temop.clear();
+                    outpass.clear();
+                    Bundle bundle = getIntent().getExtras();
+                    /*for (i = 0; i < arrayList.size(); i++) {
+                        temop.add(i, arrayList.get(i));
+                    }*/
+                    currentList = friendsList;
+                    setButtonImages(friendsList);
+
+                    int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+                    // Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < size; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                       // Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                    }
+
+                 /*   int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
+                    Log.i("here after : ", String.valueOf(size));
+                    for (i = 0; i < sizee; i++) {
+                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));  */
+
                 }
             }
 
@@ -211,16 +240,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(0));
-        try {
-            encstr = encrypt(strid, pa);
-            //add encrypted id into array
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 1" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
 
     }
@@ -230,15 +250,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(1));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 2" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
 
     }
@@ -248,15 +260,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(2));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 3" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -265,15 +269,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(3));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 4" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -283,15 +279,7 @@ public class MainActivity extends AppCompatActivity {
         //strid=String.valueOf();
         String encstr;
         strid = String.valueOf(currentList.get(4));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 5" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -300,15 +288,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(5));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 6" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -317,16 +297,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(6));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 7" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        inppass.add(strid);
     }
 
     public void Button8(View view) {
@@ -334,15 +305,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(7));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 8" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -351,15 +314,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(8));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 9" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
     }
 
     public void Button10(View view) {
@@ -367,15 +322,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(9));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 10" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -384,15 +331,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(10));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 11" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -401,15 +340,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(11));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 12" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
     }
 
     public void Button13(View view) {
@@ -417,15 +348,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(12));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 13" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -434,15 +357,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(13));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            //Toast.makeText(MainActivity.this, "Button 14" + id, Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
     }
 
     public void Button15(View view) {
@@ -450,14 +365,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(14));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + strid + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
 
     }
 
@@ -466,14 +374,7 @@ public class MainActivity extends AppCompatActivity {
         String strid;
         String encstr;
         strid = String.valueOf(currentList.get(15));
-        try {
-            encstr = encrypt(strid, pa);
-            inppass.add(strid);
-            Toast.makeText(MainActivity.this, "s " + inppass.get(0) + " size " + inppass.size() + " and " + temop.size(), Toast.LENGTH_SHORT).show();
-            counter++;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        inppass.add(strid);
     }
 
     public void Check(View view) {
@@ -569,7 +470,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private String encrypt(String Data, String password) throws Exception {
+    /* private String encrypt(String Data, String password) throws Exception {
         SecretKeySpec key = generatekey(password);
         Cipher c = Cipher.getInstance(AES);
         c.init(Cipher.ENCRYPT_MODE, key);
@@ -588,6 +489,6 @@ public class MainActivity extends AppCompatActivity {
         return secretKeySpec;
 
 
-    }
+    } */
 
 }

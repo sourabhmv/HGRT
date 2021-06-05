@@ -246,22 +246,13 @@ public class inpassarraychech extends AppCompatActivity {
     }
 
     public void Check(View view) {
-       Toast.makeText(this, password.get(0), Toast.LENGTH_SHORT).show();
+       //Toast.makeText(this, password.get(0), Toast.LENGTH_SHORT).show();
 
         if (password.size() != 0) {
 
             outpass.clear();
             String encout;
             int i;
-            for (i = 0; i < password.size(); i++) {
-                try {
-                    encout = encrypt(password.get(i), pa);
-                    outpass.add(encout);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
 
 
             // Pushing code
@@ -308,10 +299,11 @@ public class inpassarraychech extends AppCompatActivity {
 
     public void Clear(View view) {
         password.clear();
+        outpass.clear();
         Toast.makeText(this, "Current selection has been cleard", Toast.LENGTH_LONG).show();
     }
 
-    private String encrypt(String Data, String password) throws Exception {
+    /* private String encrypt(String Data, String password) throws Exception {
         SecretKeySpec key = generatekey(password);
         Cipher c = Cipher.getInstance(AES);
         c.init(Cipher.ENCRYPT_MODE, key);
@@ -330,7 +322,7 @@ public class inpassarraychech extends AppCompatActivity {
         return secretKeySpec;
 
 
-    }
+    } */
 
 
 }
