@@ -48,13 +48,17 @@ public class inpassarraychech extends AppCompatActivity {
     private Button login;
 
     ArrayList<String> password = new ArrayList<String>();
+    ArrayList<String> userpassword = new ArrayList<String>();
     private final String KEY = "mykey";
+    private final String KEYY = "mykeyy";
+
     private final String PREF_KEY = "filename";
     ArrayList<String> sending_password = new ArrayList<String>();
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
-    private String text;
+    public static final String TEXTT = "textt";
+    private String text,textt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,21 @@ public class inpassarraychech extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter(inpassarraychech.this, android.R.layout.simple_dropdown_item_1line, str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
+
+        //****************************************************************
+
+        userpassword.clear();
+        int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
+        Log.i("here after : ", String.valueOf(sizee));
+        for (int i = 0; i < sizee; i++) {
+            userpassword.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+            Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+        }
+        currentList=convertIntoUrii(userpassword);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        textt = sharedPreferences.getString(TEXTT, "");
+        // ***************************************************************
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
@@ -104,17 +123,17 @@ public class inpassarraychech extends AppCompatActivity {
                     setButtonImages(friendsList);
 
                 } else {
-                    if (userchoice.length == 0) {
-                        setButtonImages(friendsList);
-                        currentList=friendsList;
+
+
+                    if (userpassword.size() == 0) {
                         Toast.makeText(inpassarraychech.this, "You need to select Images first", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(inpassarraychech.this, Browseimages.class);
                         startActivity(intent);
 
                     } else {
                         // need to take image form the user
-                        currentList = userChoiceList;
-                        setButtonImages(userChoiceList);
+                        currentList=convertIntoUrii(userpassword);
+                        setButtonImages(currentList);
 
                     }
 
@@ -137,6 +156,17 @@ public class inpassarraychech extends AppCompatActivity {
             returnArray.add(path);
         }
         return returnArray;
+    }
+
+   // function to convert String list to array list
+    public List<Uri>convertIntoUrii(List<String> arraystr){
+        List<Uri> returnArray1= new ArrayList<>();
+        for(String string : arraystr) {
+            Uri path = Uri.parse("android.resource://com.itsmesou.hgrtapp/" +string);
+            Log.i("heree : ", path.toString());
+            returnArray1.add(path);
+        }
+         return returnArray1;
     }
 
     public void setButtonImages(List<Uri> current) {
@@ -293,7 +323,7 @@ public class inpassarraychech extends AppCompatActivity {
         }
         else {
 
-            Toast.makeText(inpassarraychech.this, "Please select any combination as password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(inpassarraychech.this, "Please select any combination as password size is" + userpassword.size(), Toast.LENGTH_SHORT).show();
         }
     }
 

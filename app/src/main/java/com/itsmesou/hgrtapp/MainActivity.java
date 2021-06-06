@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     //String outpass[] ={"2131165300"};
     ArrayList<String> outpass = new ArrayList<String>();
     ArrayList<String> temop = new ArrayList<String>();
+    ArrayList<String> userpassword = new ArrayList<String>();
 
     String AES = "AES";
     String pa = "morazha";
@@ -158,11 +159,24 @@ public class MainActivity extends AppCompatActivity {
                        // Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                     }
 
-                 /*   int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
-                    Log.i("here after : ", String.valueOf(size));
+                    int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
+                    Log.i("here after : ", String.valueOf(sizee));
                     for (i = 0; i < sizee; i++) {
-                        temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
-                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));  */
+                        userpassword.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+                        currentList.add(Uri.parse(userpassword.get(i)));
+                    }
+
+
+
+                    if(userpassword.size()==0){
+                        Toast.makeText(MainActivity.this, "You have no user password selection", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else {
+                        setButtonImages(currentList);
+
+                    }
 
                 }
             }

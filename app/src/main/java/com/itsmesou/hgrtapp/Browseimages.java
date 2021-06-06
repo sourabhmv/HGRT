@@ -22,12 +22,12 @@ public class Browseimages extends AppCompatActivity {
     private Button browse;
     private  ArrayList<Uri> imageUris= new ArrayList<Uri>();
     ArrayList<String> userpassword =new ArrayList<String>();
-    private String text;
+    private String textt;
 
     private static final int PICK_IMAGES_CODE=0;
 
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String TEXT = "text";
+    public static final String TEXTT = "textt";
     private final String KEYY = "mykeyy";
     private final String PREF_KEY = "filename";
     ArrayList<String> sending_password = new ArrayList<String>();
@@ -39,40 +39,12 @@ public class Browseimages extends AppCompatActivity {
         setContentView(R.layout.activity_browseimages);
 
         browse=findViewById(R.id.browse);
+        sending_password.clear();
 
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                pickImageIntent();
-
-               // conver Uri to string
-               for (int i=0;i<imageUris.size();i++){
-
-                   userpassword.add(i,String.valueOf(imageUris.get(i)));
-
-               }
-
-
-               // put array to shared prefference
-                SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
-                for ( int i = 0; i < userpassword.size(); i++) {
-                    Log.i("here : ", userpassword.get(i));
-                    editor.putString(KEYY + i, userpassword.get(i));
-                }
-                // after pushing store the key size
-                editor.putInt(KEYY + "size", userpassword.size());
-                editor.apply();
-                // Getting code
-
-                int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "size", 0);
-                Log.i("here after : ", String.valueOf(size));
-                for (int i = 0; i < size; i++) {
-                    sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
-                    Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
-                }
-
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                text = sharedPreferences.getString(TEXT, "");
 
             }
         });
@@ -113,6 +85,9 @@ public class Browseimages extends AppCompatActivity {
         intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE,true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Images"),PICK_IMAGES_CODE);
+
+
+
     }
 
     @Override
@@ -126,9 +101,9 @@ public class Browseimages extends AppCompatActivity {
                 if(data.getClipData()!=null){
                  //picked multiple images
                  int count=data.getClipData().getItemCount(); //Number of images selected
-                 if (count== 8){
+                 if (count== 16){
 
-                    for (int i=0;i<8;i++){
+                    for (int i=0;i<16;i++){
 
                         Uri imageUri=data.getClipData().getItemAt(i).getUri();
                             imageUris.add(imageUri); //add to list
@@ -137,6 +112,41 @@ public class Browseimages extends AppCompatActivity {
                     }
                      Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
                     position=0;
+
+
+                     // conver Uri to string
+                     for (int i=0;i<imageUris.size();i++){
+
+                         userpassword.add(i,String.valueOf(imageUris.get(i)));
+
+                     }
+
+
+
+                     // put array to shared prefference
+                     SharedPreferences.Editor editor = getSharedPreferences(PREF_KEY, MODE_PRIVATE).edit();
+                     for ( int i = 0; i < userpassword.size(); i++) {
+                         Log.i("here : ", userpassword.get(i));
+                         editor.putString(KEYY + i, userpassword.get(i));
+                     }
+                     // after pushing store the key size
+                     editor.putInt(KEYY + "sizee", userpassword.size());
+                     editor.apply();
+                     // Getting code
+
+                     int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
+                     Log.i("here after : ", String.valueOf(sizee));
+                     for (int i = 0; i < sizee; i++) {
+                         sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+                         Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+                     }
+                     Toast.makeText(this, "size is"+sending_password.size(), Toast.LENGTH_SHORT).show();
+
+                     SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                     textt = sharedPreferences.getString(TEXTT, "");
+
+
+
 
 
                  }
