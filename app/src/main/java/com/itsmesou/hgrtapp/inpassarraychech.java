@@ -162,7 +162,7 @@ public class inpassarraychech extends AppCompatActivity {
     public List<Uri>convertIntoUrii(List<String> arraystr){
         List<Uri> returnArray1= new ArrayList<>();
         for(String string : arraystr) {
-            Uri path = Uri.parse("android.resource://com.itsmesou.hgrtapp/" +string);
+            Uri path = Uri.parse(string);
             Log.i("heree : ", path.toString());
             returnArray1.add(path);
         }

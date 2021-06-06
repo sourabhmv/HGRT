@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class Browseimages extends AppCompatActivity {
 
-    private Button browse;
+    private Button browse,ok;
     private  ArrayList<Uri> imageUris= new ArrayList<Uri>();
     ArrayList<String> userpassword =new ArrayList<String>();
     private String textt;
@@ -39,11 +39,21 @@ public class Browseimages extends AppCompatActivity {
         setContentView(R.layout.activity_browseimages);
 
         browse=findViewById(R.id.browse);
+        ok=findViewById(R.id.ok);
         sending_password.clear();
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Browseimages.this, inpassarraychech.class);
+                startActivity(intent);
+            }
+        });
 
         browse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imageUris.clear();
                pickImageIntent();
 
             }
@@ -83,7 +93,7 @@ public class Browseimages extends AppCompatActivity {
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE,true);
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
         startActivityForResult(Intent.createChooser(intent,"Select Images"),PICK_IMAGES_CODE);
 
 
@@ -165,7 +175,7 @@ public class Browseimages extends AppCompatActivity {
                     //pick single image
                     Uri imageUri=data.getData();
                     imageUris.add(imageUri);
-                    Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please select 8 Images", Toast.LENGTH_SHORT).show();
                     position =0;
                 }
 
