@@ -3,6 +3,7 @@ package com.itsmesou.hgrtapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private final String KEY = "mykey";
     private final String KEYY = "mykeyy";
     private final String PREF_KEY = "filename";
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXTT = "textt";
+    private String text,textt;
 
     int timer = 0;
 
@@ -84,6 +88,22 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_dropdown_item_1line, str);
         spinner.setAdapter(arrayAdapter);
         spinner.setSelection(1);
+
+
+        //****************************************************************
+
+        userpassword.clear();
+        int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
+        Log.i("here after : ", String.valueOf(sizee));
+        for (int i = 0; i < sizee; i++) {
+            userpassword.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+            Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
+        }
+        currentList=convertIntoUrii(userpassword);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        textt = sharedPreferences.getString(TEXTT, "");
+        // ***************************************************************
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
@@ -149,22 +169,12 @@ public class MainActivity extends AppCompatActivity {
                     /*for (i = 0; i < arrayList.size(); i++) {
                         temop.add(i, arrayList.get(i));
                     }*/
-                    currentList = friendsList;
-                    setButtonImages(friendsList);
 
                     int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
                     // Log.i("here after : ", String.valueOf(size));
                     for (i = 0; i < size; i++) {
                         temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
                        // Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
-                    }
-
-                    int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
-                    Log.i("here after : ", String.valueOf(sizee));
-                    for (i = 0; i < sizee; i++) {
-                        userpassword.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
-                        Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
-                        currentList.add(Uri.parse(userpassword.get(i)));
                     }
 
 
@@ -174,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     else {
+                        currentList=convertIntoUrii(userpassword);
                         setButtonImages(currentList);
 
                     }
@@ -198,6 +209,18 @@ public class MainActivity extends AppCompatActivity {
         }
         return returnArray;
     }
+
+    // function to convert String list to array list
+    public List<Uri>convertIntoUrii(List<String> arraystr){
+        List<Uri> returnArray1= new ArrayList<>();
+        for(String string : arraystr) {
+            Uri path = Uri.parse(string);
+            Log.i("heree : ", path.toString());
+            returnArray1.add(path);
+        }
+        return returnArray1;
+    }
+
 
     public void setButtonImages(List<Uri> current) {
 
@@ -391,12 +414,21 @@ public class MainActivity extends AppCompatActivity {
         inppass.add(strid);
     }
 
+
+
+    public void Register(View view) {
+        Intent intent = new Intent(MainActivity.this, Forgetactivity.class);
+        startActivity(intent);
+    }
+
     public void Check(View view) {
         // calculate outpass
         outpass.clear();
         for (int i = 0; i < temop.size(); i++) {
             outpass.add(String.valueOf(temop.get(i)));
         }
+
+
 
         if (timer == 4) {
             B1.setEnabled(false);
@@ -479,10 +511,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void Register(View view) {
-        Intent intent = new Intent(MainActivity.this, Forgetactivity.class);
-        startActivity(intent);
-    }
+
 
     /* private String encrypt(String Data, String password) throws Exception {
         SecretKeySpec key = generatekey(password);

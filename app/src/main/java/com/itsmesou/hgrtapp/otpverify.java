@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,7 @@ public class otpverify extends AppCompatActivity {
         input6 = findViewById(R.id.inotp6);
 
 
+
         TextView textView = findViewById(R.id.shownumber);
         textView.setText(String.format("+91-%s", getIntent().getStringExtra("mobile")));
 
@@ -70,12 +72,16 @@ public class otpverify extends AppCompatActivity {
 
                                 progressverifyotp.setVisibility(View.GONE);
                                 button.setVisibility(View.VISIBLE);
+                                int flg=0;
 
                                 if (task.isSuccessful()) {
-                                    Intent intent = new Intent(getApplicationContext(), inpassarraychech.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                } else {
+
+                                        Intent intent = new Intent(getApplicationContext(), inpassarraychech.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+
+                                }
+                                else {
                                     Toast.makeText(otpverify.this, "Enter correct OTP", Toast.LENGTH_SHORT).show();
 
                                 }

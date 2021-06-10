@@ -46,7 +46,6 @@ public class Forgetactivity extends AppCompatActivity {
             @Override
             public void onCodeSent(@NonNull String backendotp, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
 
-
                 Intent intent = new Intent(getApplicationContext(), otpverify.class);
                 intent.putExtra("mobile", text);
                 intent.putExtra("backendotp", backendotp);
