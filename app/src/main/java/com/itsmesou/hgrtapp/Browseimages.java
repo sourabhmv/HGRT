@@ -150,7 +150,7 @@ public class Browseimages extends AppCompatActivity {
                          sending_password.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
                          Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEYY + i, ""));
                      }
-                     Toast.makeText(this, "size is"+sending_password.size(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(this, "size is"+sending_password.size(), Toast.LENGTH_SHORT).show();
 
                      SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                      textt = sharedPreferences.getString(TEXTT, "");

@@ -1,20 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Startfileencryption">
 
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutgroup"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="100dp" />
+
     <Button
         android:id="@+id/browse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="Resetcustom"
         android:text="Reset custom password images"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="Resetcustom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.445" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layoutgroup">
+
+        <Button
+            android:id="@+id/btnencrypt"
+            android:enabled="false"
+            android:text="Encrypt"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btndecrypt"
+            android:enabled="false"
+            android:text="Decrypt"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button17"
+        android:onClick="browse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="600dp"
+        android:text="Browse" />
+
+
+</RelativeLayout>
+
