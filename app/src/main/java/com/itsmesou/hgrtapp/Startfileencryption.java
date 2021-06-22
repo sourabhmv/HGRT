@@ -12,7 +12,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -63,6 +65,8 @@ public class Startfileencryption extends AppCompatActivity {
     String my_spec_key="srsouasamzdidhri";
     private static final int PICK_IMAGES_CODE=0;
     int position=0;
+    Context context;
+
 
 
     @Override
@@ -170,38 +174,65 @@ public class Startfileencryption extends AppCompatActivity {
 
 
                          //convert to bitmap
-                         Drawable drawable= ContextCompat.getDrawable(Startfileencryption.this,R.drawable.aswinsmile);
-                         BitmapDrawable bitmapDrawable=(BitmapDrawable)drawable;
+                        // Drawable drawable= ContextCompat.getDrawable(Startfileencryption.this,R.drawable.aswinsmile);
+                         //BitmapDrawable bitmapDrawable=(BitmapDrawable)drawable;
 
-                         Bitmap bitmap=bitmapDrawable.getBitmap();
-
-                        // Bitmap bitmap = MediaStore.Images.Media.getBitmap(ge,imageUris.get(0));
-                         
-                         ByteArrayOutputStream stream= new ByteArrayOutputStream();
-                         bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
-                         InputStream is=new  ByteArrayInputStream(stream.toByteArray());
-
-                         //  create file
-                         File outputfileEnc=new File(MyDir,FILE_NAME_ENC);
-
-                         try {
-                             MyEncrypter.encryptToFile(my_key,my_spec_key,is,new FileOutputStream(outputfileEnc));
-                             Toast.makeText(Startfileencryption.this, "Encrypted", Toast.LENGTH_SHORT).show();
-                         } catch (IOException e) {
-                             e.printStackTrace();
-                         } catch (NoSuchAlgorithmException e) {
-                             e.printStackTrace();
-                         } catch (InvalidKeyException e) {
-                             e.printStackTrace();
-                         } catch (InvalidAlgorithmParameterException e) {
-                             e.printStackTrace();
-                         } catch (NoSuchPaddingException e) {
-                             e.printStackTrace();
+                        // Bitmap bitmap=bitmapDrawable.getBitmap();
+                         if(imageUris.size()==0){
+                             Toast.makeText(context, "You have no selection", Toast.LENGTH_SHORT).show();
                          }
+                         else {
+                             context=getApplicationContext();
+                             Bitmap bitmap = null;
+                             try {
+                                 bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUris.get(0));
+                                 // path
+                                 String file_dj_path = Environment.getExternalStorageDirectory() +"/storage/emulated/0/Download/images (12).jpeg";
+                                 File fdelete = new File(file_dj_path);
+                                 if (fdelete.exists()) {
+                                     if (fdelete.delete()) {
+                                        Log.i("here file deleted",file_dj_path);
+                                         callBroadCast();
+                                     } else {
+                                         Log.i("here file not deleted", file_dj_path);
+                                     }
+                                 }
 
 
+                             } catch (IOException e) {
+                                 Log.i("here try", "Error");
+                                 e.printStackTrace();
+                             }
+
+                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                             InputStream is = new ByteArrayInputStream(stream.toByteArray());
+
+                             //  create file
+                             File outputfileEnc = new File(MyDir, FILE_NAME_ENC);
+
+                             try {
+                                 MyEncrypter.encryptToFile(my_key, my_spec_key, is, new FileOutputStream(outputfileEnc));
+                                 Toast.makeText(Startfileencryption.this, "Encrypted", Toast.LENGTH_SHORT).show();
+                             } catch (IOException e) {
+                                 e.printStackTrace();
+                             } catch (NoSuchAlgorithmException e) {
+                                 e.printStackTrace();
+                             } catch (InvalidKeyException e) {
+                                 e.printStackTrace();
+                             } catch (InvalidAlgorithmParameterException e) {
+                                 e.printStackTrace();
+                             } catch (NoSuchPaddingException e) {
+                                 e.printStackTrace();
+                             }
+
+                         }
                      }
                  });
+
+
+
+
 
         userpassword.clear();
         int sizee = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEYY + "sizee", 0);
@@ -227,9 +258,36 @@ public class Startfileencryption extends AppCompatActivity {
         }
     }
 
+    // broadcast
+
+    public void callBroadCast() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            Log.e("-->", " >= 14");
+            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().toString()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                /*
+                 *   (non-Javadoc)
+                 * @see android.media.MediaScannerConnection.OnScanCompletedListener#onScanCompleted(java.lang.String, android.net.Uri)
+                 */
+                public void onScanCompleted(String path, Uri uri) {
+                    Log.e("ExternalStorage", "Scanned " + path + ":");
+                    Log.e("ExternalStorage", "-> uri=" + uri);
+                }
+            });
+        } else {
+            Log.e("-->", " < 14");
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        }
+    }
+
+    // End of broadcast
+
+
 
     // Select images to encrypt
     public void browse(View view) {
+        imageUris.clear();
+        pickImageIntent();
 
     }
 
