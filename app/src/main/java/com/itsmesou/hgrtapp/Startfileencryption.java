@@ -82,7 +82,7 @@ public class Startfileencryption extends AppCompatActivity {
 
         btnenc=findViewById(R.id.btnencrypt);
         btndec=findViewById(R.id.btndecrypt);
-        imageView=findViewById(R.id.imageview);
+
 
 
         // init path
@@ -148,7 +148,6 @@ public class Startfileencryption extends AppCompatActivity {
                                          new FileOutputStream(outputFileDec));
 
                                  // Seting image view
-                                 imageView.setImageURI(Uri.fromFile(outputFileDec));
                                  // outputFileDec.delete();
 
                                  // Move to decrypted folder
