@@ -76,7 +76,10 @@ public class Homescreen extends AppCompatActivity {
                     startActivity(intent);
                     flaz[0]++;
 
-
+                    sharedPreferences[0] = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences[0].edit();
+                    editor.putInt("koinkey", flaz[0]);
+                    editor.commit();
                 }
                 else {
                     Intent intent = new Intent(Homescreen.this, inpassarraychech.class);
@@ -88,10 +91,7 @@ public class Homescreen extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            sharedPreferences[0] = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences[0].edit();
-            editor.putInt("koinkey", flaz[0]);
-            editor.commit();
+
 
         });
 
