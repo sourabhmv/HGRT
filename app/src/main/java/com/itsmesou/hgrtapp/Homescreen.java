@@ -3,20 +3,16 @@ package com.itsmesou.hgrtapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Homescreen extends AppCompatActivity {
 
@@ -39,6 +35,14 @@ public class Homescreen extends AppCompatActivity {
 
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // User manual
+        final int[] flaz = {0};
+
+        final SharedPreferences[] sharedPreferences = {getPreferences(MODE_PRIVATE)};
+        flaz[0] = sharedPreferences[0].getInt("koinkey", 0);
+
+
 
         //Declaration
         button = findViewById(R.id.loginhs);
@@ -67,13 +71,28 @@ public class Homescreen extends AppCompatActivity {
                 Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
             }
             if (temop.size() == 0) {
-                Intent intent = new Intent(Homescreen.this, inpassarraychech.class);
-                startActivity(intent);
+                if( flaz[0] == 0){
+                    Intent intent = new Intent(Homescreen.this, manual.class);
+                    startActivity(intent);
+                    flaz[0]++;
+
+
+                }
+                else {
+                    Intent intent = new Intent(Homescreen.this, inpassarraychech.class);
+                    startActivity(intent);
+                }
             } else {
-                Toast.makeText(this, temop.get(0), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(Homescreen.this, MainActivity.class);
                 startActivity(intent);
             }
+
+            sharedPreferences[0] = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences[0].edit();
+            editor.putInt("koinkey", flaz[0]);
+            editor.commit();
+
         });
 
         }

@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.FileUtils;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -127,6 +128,9 @@ public class Startfileencryption extends AppCompatActivity {
                          SharedPreferences sharedPreferences ;
                          int flag2;
 
+
+
+
                          for(int i=0;i<count;i++) {
 
                              sharedPreferences = getPreferences(MODE_PRIVATE);
@@ -157,6 +161,20 @@ public class Startfileencryption extends AppCompatActivity {
 
                                  Toast.makeText(Startfileencryption.this, "Decrypted", Toast.LENGTH_SHORT).show();
                                  outputFileDec.delete();
+                                 File f = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
+                                 if (f.exists()) {
+
+                                     File root = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
+                                     File[] Files = root.listFiles();
+                                     if(Files != null) {
+                                         int j;
+                                         for(j = 0; j < Files.length; j++) {
+                                             System.out.println(Files[j].getAbsolutePath());
+                                             System.out.println(Files[j].delete());
+                                         }
+                                     }
+
+                                 }
 
 
                              } catch (IOException e) {
