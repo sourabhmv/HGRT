@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:scrollbars="none"
+    android:background="@drawable/mobbg"
     tools:context=".otpverify">
 
     <LinearLayout
@@ -151,7 +152,7 @@
             android:orientation="horizontal">
 
 
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Didn't receive the OTP"
@@ -174,14 +175,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/verify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="VERIFY"
-                android:textStyle="bold" />
-
             <ProgressBar
                 android:id="@+id/progressverify"
                 android:layout_width="35dp"
@@ -192,8 +185,17 @@
 
         </FrameLayout>
 
+        <Button
+            android:id="@+id/verify"
+            android:layout_width="match_parent"
+            android:background="@drawable/mobsche"
+            android:layout_height="71dp"
+            android:layout_margin="30dp"
+            android:text="VERIFY"
+            android:textStyle="bold" />
 
-        </LinearLayout>
+
+    </LinearLayout>
 
 
 
