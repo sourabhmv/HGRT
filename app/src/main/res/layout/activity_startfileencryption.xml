@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/filency"
     tools:context=".Startfileencryption">
-
-
 
 
     <Button
         android:id="@+id/browse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="176dp"
+        android:layout_height="61dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="642dp"
+        android:background="@drawable/encsc_1"
         android:onClick="Resetcustom"
         android:text="Reset custom password images"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,40 +25,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.445" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/layoutgroup">
-
-        <Button
-            android:id="@+id/btnencrypt"
-            android:enabled="false"
-            android:text="Encrypt"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/btndecrypt"
-            android:enabled="false"
-            android:text="Decrypt"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/button17"
+        android:layout_width="149dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="251dp"
+        android:background="@drawable/encsc_1"
         android:onClick="browse"
+        android:text="Browse" />
+
+    <Button
+        android:id="@+id/btnencrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="600dp"
-        android:text="Browse" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="369dp"
+        android:background="@drawable/encanddec"
+        android:enabled="false"
+        android:text="Encrypt" />
+
+    <Button
+        android:id="@+id/btndecrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="378dp"
+        android:layout_marginEnd="51dp"
+        android:background="@drawable/encanddec"
+        android:enabled="false"
+        android:text="Decrypt" />
 
 
 </RelativeLayout>

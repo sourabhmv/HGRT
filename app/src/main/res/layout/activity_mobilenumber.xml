@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:scrollbars="none"
+    android:background="@drawable/mobbg"
     tools:context=".Mobilenumber">
 
     <LinearLayout
@@ -69,17 +70,13 @@
                 android:textStyle="bold" />
 
 
-
-
-
-
             <EditText
                 android:id="@+id/inputmobilenum"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:hint="9497754152"
+                android:hint="   Enter Your Number"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -94,6 +91,7 @@
 
             <Button
                 android:id="@+id/otp"
+                android:background="@drawable/mobsche"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
