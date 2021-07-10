@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.an_9, R.drawable.an_10, R.drawable.an_11, R.drawable.an_12, R.drawable.an_13, R.drawable.an_14, R.drawable.an_15, R.drawable.an_16};
 
     // array of uri
+    
     List<Uri> imagesList, friendsList, animalList, userChoiceList, currentList;
 
     //array which will be assigned to buttons
