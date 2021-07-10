@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1083579323464",
+    "project_id": "hgrt-app",
+    "storage_bucket": "hgrt-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083579323464:android:8b0ee5178424c8523b347d",
+        "android_client_info": {
+          "package_name": "com.itsmesou.hgrtapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083579323464-lk7l8peks42aracf61eb61q75b1bacus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxhHrGwSdK63kL28eju-_7U0T9gWSxFLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083579323464-lk7l8peks42aracf61eb61q75b1bacus.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

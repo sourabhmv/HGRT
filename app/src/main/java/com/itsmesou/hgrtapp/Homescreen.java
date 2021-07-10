@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -11,22 +12,29 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class Homescreen extends AppCompatActivity {
 
     //variables
     ImageView logo;
     private Button button;
-    TextView wlc,det;
+    TextView wlc, det;
+    private final String KEY = "mykey";
+    private final String PREF_KEY = "filename";
+    ArrayList<String> temop = new ArrayList<String>();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(getWindow().FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.homescreen);
 
 
@@ -53,9 +61,19 @@ public class Homescreen extends AppCompatActivity {
 
         //Button operation to open new activity
         button.setOnClickListener(view -> {
-
-                Intent intent = new Intent(this, MainActivity.class);
+            int size = getSharedPreferences(PREF_KEY, MODE_PRIVATE).getInt(KEY + "size", 0);
+            for (int i = 0; i < size; i++) {
+                temop.add(getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+                Log.i("here after : ", getSharedPreferences(PREF_KEY, MODE_PRIVATE).getString(KEY + i, ""));
+            }
+            if (temop.size() == 0) {
+                Intent intent = new Intent(Homescreen.this, inpassarraychech.class);
                 startActivity(intent);
+            } else {
+                Toast.makeText(this, temop.get(0), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Homescreen.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
 
         }
