@@ -14,7 +14,7 @@
         android:layout_height="61dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="102dp"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="642dp"
         android:background="@drawable/encsc_1"
         android:onClick="Resetcustom"
@@ -29,13 +29,16 @@
         android:id="@+id/button17"
         android:layout_width="149dp"
         android:layout_height="62dp"
+        android:layout_alignEnd="@+id/button17"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="251dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="263dp"
+        android:layout_marginEnd="0dp"
         android:background="@drawable/encsc_1"
         android:onClick="browse"
-        android:text="Browse" />
+        android:text="Browse"
+        tools:ignore="NotSibling" />
 
     <Button
         android:id="@+id/btnencrypt"
@@ -43,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="369dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="405dp"
         android:background="@drawable/encanddec"
         android:enabled="false"
         android:text="Encrypt" />
@@ -57,8 +60,8 @@
 
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="378dp"
-        android:layout_marginEnd="51dp"
+        android:layout_marginTop="404dp"
+        android:layout_marginEnd="56dp"
         android:background="@drawable/encanddec"
         android:enabled="false"
         android:text="Decrypt" />

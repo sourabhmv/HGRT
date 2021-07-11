@@ -157,6 +157,7 @@ public class Startfileencryption extends AppCompatActivity {
                                  // Move to decrypted folder
 
                                  copyOrMoveFile(outputFileDec, MyDir2, false);
+                                 encFile.delete();
 
 
                                  Toast.makeText(Startfileencryption.this, "Decrypted", Toast.LENGTH_SHORT).show();
@@ -179,7 +180,7 @@ public class Startfileencryption extends AppCompatActivity {
 
 
 
-                         File fenc = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
+                        /* File fenc = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
                          if (fenc.exists()) {
 
                              File root = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
@@ -192,7 +193,7 @@ public class Startfileencryption extends AppCompatActivity {
                                  }
                              }
 
-                         }
+                         } */
 
 
                      }
@@ -256,6 +257,7 @@ public class Startfileencryption extends AppCompatActivity {
 
     // Select images to encrypt
     public void browse(View view) {
+
         imageUris.clear();
         pickImageIntent();
 
@@ -283,6 +285,8 @@ public class Startfileencryption extends AppCompatActivity {
 
 
         btnenc.setOnClickListener(new View.OnClickListener() {
+
+
             private Object RandomStringUtils;
 
             @Override
@@ -312,24 +316,20 @@ public class Startfileencryption extends AppCompatActivity {
                 //BitmapDrawable bitmapDrawable=(BitmapDrawable)drawable;
 
                 // Bitmap bitmap=bitmapDrawable.getBitmap();
-                if(imageUris.size()==0){
+                if (imageUris.size() == 0) {
                     Toast.makeText(context, "You have no selection", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     context = getApplicationContext();
                     Bitmap bitmap = null;
-                    int flag=1;
+                    int flag = 1;
                     SharedPreferences sharedPreferences;
 
 
-
                     for (int i = 0; i < count; i++) {
-                    try {
+                        try {
 
-                         sharedPreferences = getPreferences(MODE_PRIVATE);
-                        flag = sharedPreferences.getInt("key1", 1);
-
-
+                            sharedPreferences = getPreferences(MODE_PRIVATE);
+                            flag = sharedPreferences.getInt("key1", 1);
 
 
                             bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUris.get(i));
@@ -354,7 +354,7 @@ public class Startfileencryption extends AppCompatActivity {
                             }
 
 
-                        } catch(IOException e){
+                        } catch (IOException e) {
                             Log.i("here try", "Error");
                             e.printStackTrace();
                         }
@@ -364,8 +364,8 @@ public class Startfileencryption extends AppCompatActivity {
                         InputStream is = new ByteArrayInputStream(stream.toByteArray());
 
                         //  create file
-                        FILE_NAME_DEC="image"+flag+".png";
-                        FILE_NAME_ENC="image"+flag;
+                        FILE_NAME_DEC = "image" + flag + ".png";
+                        FILE_NAME_ENC = "image" + flag;
                         File outputfileEnc = new File(MyDir, FILE_NAME_ENC);
                         flag++;
                         sharedPreferences = getPreferences(MODE_PRIVATE);
@@ -389,15 +389,13 @@ public class Startfileencryption extends AppCompatActivity {
                         }
 
 
-
                     }
-
-
 
 
                 }
 
-            }
+
+          }
         });
 
 
