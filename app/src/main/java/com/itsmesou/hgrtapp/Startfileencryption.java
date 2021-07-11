@@ -161,20 +161,7 @@ public class Startfileencryption extends AppCompatActivity {
 
                                  Toast.makeText(Startfileencryption.this, "Decrypted", Toast.LENGTH_SHORT).show();
                                  outputFileDec.delete();
-                                 File f = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
-                                 if (f.exists()) {
 
-                                     File root = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
-                                     File[] Files = root.listFiles();
-                                     if(Files != null) {
-                                         int j;
-                                         for(j = 0; j < Files.length; j++) {
-                                             System.out.println(Files[j].getAbsolutePath());
-                                             System.out.println(Files[j].delete());
-                                         }
-                                     }
-
-                                 }
 
 
                              } catch (IOException e) {
@@ -188,6 +175,23 @@ public class Startfileencryption extends AppCompatActivity {
                              } catch (NoSuchPaddingException e) {
                                  e.printStackTrace();
                              }
+                         }
+
+
+
+                         File fenc = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
+                         if (fenc.exists()) {
+
+                             File root = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
+                             File[] Files = root.listFiles();
+                             if(Files != null) {
+                                 int j;
+                                 for(j = 0; j < Files.length; j++) {
+
+                                     Files[j].delete();
+                                 }
+                             }
+
                          }
 
 
