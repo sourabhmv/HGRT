@@ -70,9 +70,10 @@ public class Startfileencryption extends AppCompatActivity {
     String my_key="dmpjmenusrsouasw"; // 16 char
     String my_spec_key="srsouasamzdidhri";
     private static final int PICK_IMAGES_CODE=0;
+    SharedPreferences sharedPreferences ;
     int position=0;
     Context context;
-    int count;
+    int count,sum=0;
 
 
 
@@ -125,20 +126,30 @@ public class Startfileencryption extends AppCompatActivity {
                      @Override
                      public void onClick(View v) {
 
-                         SharedPreferences sharedPreferences ;
+                         SharedPreferences sharedPreferences;
                          int flag2;
+                         File dirdd = new File(Environment.getExternalStorageDirectory().toString() + "/Encrypted_images");
+
+                         int totalNumFiles = dirdd.listFiles().length;
+
+                         if (totalNumFiles == 0) {
+
+                             Toast.makeText(Startfileencryption.this, "No encrypted files", Toast.LENGTH_SHORT).show();
+                         }
+
+                         else {
 
 
-
-
-                         for(int i=0;i<count;i++) {
+                         for (int i = 0; i < totalNumFiles; i++) {
 
                              sharedPreferences = getPreferences(MODE_PRIVATE);
                              flag2 = sharedPreferences.getInt("key2", 1);
 
-                             FILE_NAME_DEC="image"+flag2+".png";
-                             FILE_NAME_ENC="image"+flag2;
+
+                             FILE_NAME_DEC = "image" + flag2 + ".png";
+                             FILE_NAME_ENC = "image" + flag2;
                              flag2++;
+
                              sharedPreferences = getPreferences(MODE_PRIVATE);
                              SharedPreferences.Editor editor = sharedPreferences.edit();
                              editor.putInt("key2", flag2);
@@ -164,7 +175,6 @@ public class Startfileencryption extends AppCompatActivity {
                                  outputFileDec.delete();
 
 
-
                              } catch (IOException e) {
                                  e.printStackTrace();
                              } catch (NoSuchAlgorithmException e) {
@@ -178,25 +188,9 @@ public class Startfileencryption extends AppCompatActivity {
                              }
                          }
 
-
-
-                        /* File fenc = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
-                         if (fenc.exists()) {
-
-                             File root = new File(Environment.getExternalStorageDirectory(), "/Encrypted_images");
-                             File[] Files = root.listFiles();
-                             if(Files != null) {
-                                 int j;
-                                 for(j = 0; j < Files.length; j++) {
-
-                                     Files[j].delete();
-                                 }
-                             }
-
-                         } */
-
-
                      }
+                         }
+
                  });
 
 
@@ -431,6 +425,7 @@ public class Startfileencryption extends AppCompatActivity {
                     imageUris.add(imageUri);
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
                     position =0;
+
                 }
 
             }

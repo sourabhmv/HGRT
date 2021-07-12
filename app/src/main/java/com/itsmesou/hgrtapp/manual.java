@@ -15,7 +15,6 @@ public class manual extends AppCompatActivity {
         setContentView(R.layout.activity_manual);
 
 
-        Toast.makeText(this, "User manual ", Toast.LENGTH_SHORT).show();
 
 
     }
