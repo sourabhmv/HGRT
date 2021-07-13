@@ -128,67 +128,60 @@ public class Startfileencryption extends AppCompatActivity {
 
                          SharedPreferences sharedPreferences;
                          int flag2;
-                         File dirdd = new File(Environment.getExternalStorageDirectory().toString() + "/Encrypted_images");
+                         File dirdd = new File(Environment.getExternalStorageDirectory().toString()+"/Encrypted_images");
 
                          int totalNumFiles = dirdd.listFiles().length;
 
-                         if (totalNumFiles == 0) {
 
-                             Toast.makeText(Startfileencryption.this, "No encrypted files", Toast.LENGTH_SHORT).show();
-                         }
+                                 for (int i = 0; i < totalNumFiles; i++) {
 
-                         else {
-
-
-                         for (int i = 0; i < totalNumFiles; i++) {
-
-                             sharedPreferences = getPreferences(MODE_PRIVATE);
-                             flag2 = sharedPreferences.getInt("key2", 1);
+                                     sharedPreferences = getPreferences(MODE_PRIVATE);
+                                     flag2 = sharedPreferences.getInt("key2", 1);
 
 
-                             FILE_NAME_DEC = "image" + flag2 + ".png";
-                             FILE_NAME_ENC = "image" + flag2;
-                             flag2++;
+                                     FILE_NAME_DEC = "image" + flag2 + ".png";
+                                     FILE_NAME_ENC = "image" + flag2;
+                                     flag2++;
 
-                             sharedPreferences = getPreferences(MODE_PRIVATE);
-                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                             editor.putInt("key2", flag2);
-                             editor.commit();
-
-
-                             File outputFileDec = new File(MyDir, FILE_NAME_DEC);
-                             File encFile = new File(MyDir, FILE_NAME_ENC);
-                             try {
-                                 MyEncrypter.decryptToFile(my_key, my_spec_key, new FileInputStream(encFile),
-                                         new FileOutputStream(outputFileDec));
-
-                                 // Seting image view
-                                 // outputFileDec.delete();
-
-                                 // Move to decrypted folder
-
-                                 copyOrMoveFile(outputFileDec, MyDir2, false);
-                                 encFile.delete();
+                                     sharedPreferences = getPreferences(MODE_PRIVATE);
+                                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                                     editor.putInt("key2", flag2);
+                                     editor.commit();
 
 
-                                 Toast.makeText(Startfileencryption.this, "Decrypted", Toast.LENGTH_SHORT).show();
-                                 outputFileDec.delete();
+                                     File outputFileDec = new File(MyDir, FILE_NAME_DEC);
+                                     File encFile = new File(MyDir, FILE_NAME_ENC);
+                                     try {
+                                         MyEncrypter.decryptToFile(my_key, my_spec_key, new FileInputStream(encFile),
+                                                 new FileOutputStream(outputFileDec));
+
+                                         // Seting image view
+                                         // outputFileDec.delete();
+
+                                         // Move to decrypted folder
+
+                                         copyOrMoveFile(outputFileDec, MyDir2, false);
+                                         encFile.delete();
 
 
-                             } catch (IOException e) {
-                                 e.printStackTrace();
-                             } catch (NoSuchAlgorithmException e) {
-                                 e.printStackTrace();
-                             } catch (InvalidKeyException e) {
-                                 e.printStackTrace();
-                             } catch (InvalidAlgorithmParameterException e) {
-                                 e.printStackTrace();
-                             } catch (NoSuchPaddingException e) {
-                                 e.printStackTrace();
-                             }
-                         }
+                                         Toast.makeText(Startfileencryption.this, "Decrypted", Toast.LENGTH_SHORT).show();
+                                         outputFileDec.delete();
 
-                     }
+
+                                     } catch (IOException e) {
+                                         e.printStackTrace();
+                                     } catch (NoSuchAlgorithmException e) {
+                                         e.printStackTrace();
+                                     } catch (InvalidKeyException e) {
+                                         e.printStackTrace();
+                                     } catch (InvalidAlgorithmParameterException e) {
+                                         e.printStackTrace();
+                                     } catch (NoSuchPaddingException e) {
+                                         e.printStackTrace();
+                                     }
+                                 }
+
+
                          }
 
                  });
